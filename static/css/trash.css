@@ -1,0 +1,17 @@
+/* SMALL DEVICES */
+@media only screen and (min-width: 576px){
+}
+/* MEDIUM DEVICES */
+@media only screen and (min-width: 768px){
+}
+/* LARGE DEVICES */
+@media only screen and (min-width: 992px){
+}
+/* EXTRA LARGE DEVICES */
+@media only screen and (min-width: 1200px){
+}
+@media only screen and (min-width: 1360px){
+}
+/* WAY TOO EXTRA LARGE DEVICES */
+@media only screen and (min-width: 1920px){
+}

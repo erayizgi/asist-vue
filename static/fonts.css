@@ -1,0 +1,65 @@
+
+@font-face{
+  font-family: 'Exo 2 Black';
+  src: url('./fonts/exo2/Exo2-Black.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Black Italic';
+  src: url('./fonts/exo2/Exo2-BlackItalic.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Bold';
+  src: url('./fonts/exo2/Exo2-Bold.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Bold Italic';
+  src: url('./fonts/exo2/Exo2-BoldItalic.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Extra Bold';
+  src: url('./fonts/exo2/Exo2-ExtraBold.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Extra Bold Italic';
+  src: url('./fonts/exo2/Exo2-ExtraBoldItalic.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Extra Light';
+  src: url('./fonts/exo2/Exo2-ExtraLight.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Extra Light Italic';
+  src: url('./fonts/exo2/Exo2-ExtraLightItalic.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Italic';
+  src: url('./fonts/exo2/Exo2-Italic.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Light';
+  src: url('./fonts/exo2/Exo2-Light.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Light Italic';
+  src: url('./fonts/exo2/Exo2-LightItalic.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Medium';
+  src: url('./fonts/exo2/Exo2-Medium.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Medium Italic';
+  src: url('./fonts/exo2/Exo2-MediumItalic.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Regular';
+  src: url('./fonts/exo2/Exo2-Regular.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Semi Bold';
+  src: url('./fonts/exo2/Exo2-SemiBold.otf');
+}
+@font-face{
+  font-family: 'Exo 2 Semi Bold Italic';
+  src: url('./fonts/exo2/Exo2-SemiBoldItalic.otf');
+}

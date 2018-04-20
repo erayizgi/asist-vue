@@ -1,0 +1,152 @@
+/* regular */
+@font-face{
+    font-family: 'Exo 2 Black';
+    src: url('fonts/exo2/Exo2-Black.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Black Italic';
+    src: url('fonts/exo2/Exo2-BlackItalic.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Bold';
+    src: url('fonts/exo2/Exo2-Bold.otf');
+    font-weight: bold;
+}
+@font-face{
+    font-family: 'Exo 2 Bold Italic';
+    src: url('fonts/exo2/Exo2-BoldItalic.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Extra Bold';
+    src: url('fonts/exo2/Exo2-ExtraBold.otf');
+    font-weight: 800;
+}
+@font-face{
+    font-family: 'Exo 2 Extra Bold Italic';
+    src: url('fonts/exo2/Exo2-ExtraBoldItalic.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Extra Light';
+    src: url('fonts/exo2/Exo2-ExtraLight.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Extra Light Italic';
+    src: url('fonts/exo2/Exo2-ExtraLightItalic.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Italic';
+    src: url('fonts/exo2/Exo2-Italic.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Light';
+    src: url('fonts/exo2/Exo2-Light.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Light Italic';
+    src: url('fonts/exo2/Exo2-LightItalic.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Medium';
+    src: url('fonts/exo2/Exo2-Medium.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Medium Italic';
+    src: url('fonts/exo2/Exo2-MediumItalic.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Regular';
+    src: url('fonts/exo2/Exo2-Regular.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Semi Bold';
+    src: url('fonts/exo2/Exo2-SemiBold.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Semi Bold Italic';
+    src: url('fonts/exo2/Exo2-SemiBoldItalic.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Semi Thin';
+    src: url('fonts/exo2/Exo2-Thin.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Semi Thin Italic';
+    src: url('fonts/exo2/Exo2-ThinItalic.otf');
+}
+
+/* condensed */
+@font-face {
+    font-family: 'Exo 2 Black Condensed';
+    src: url('fonts/exo2-condensed/Exo2-BlackCondensed.otf');
+}
+@font-face {
+    font-family: 'Exo 2 Bold Condensed';
+    src: url('fonts/exo2-condensed/Exo2-BoldCondensed.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Extra Bold Condensed';
+    src: url('fonts/exo2-condensed/Exo2-ExtraBoldCondensed.otf');
+}
+@font-face {
+    font-family: 'Exo 2 Extra Light Condensed';
+    src: url('fonts/exo2-condensed/Exo2-ExtraLightCondensed.otf');
+}
+@font-face {
+    font-family: 'Exo 2 Light Condensed';
+    src: url('fonts/exo2-condensed/Exo2-LightCondensed.otf');
+}
+@font-face {
+    font-family: 'Exo 2 Medium Condensed';
+    src: url('fonts/exo2-condensed/Exo2-MediumCondensed.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Regular Condensed';
+    src: url('fonts/exo2-condensed/Exo2-RegularCondensed.otf');
+}
+@font-face {
+    font-family: 'Exo 2 Semi Bold Condensed';
+    src: url('fonts/exo2-condensed/Exo2-SemiBoldCondensed.otf');
+}
+@font-face {
+    font-family: 'Exo 2 Thin Condensed';
+    src: url('fonts/exo2-condensed/Exo2-ThinCondensed.otf');
+}
+
+/* expanded */
+@font-face{
+    font-family: 'Exo 2 Black Expanded';
+    src: url('fonts/exo2-expanded/Exo2-BlackExpanded.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Bold Expanded';
+    src: url('fonts/exo2-expanded/Exo2-BoldExpanded.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Extra Bold Expanded';
+    src: url('fonts/exo2-expanded/Exo2-ExtraBoldExpanded.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Extra Light Expanded';
+    src: url('fonts/exo2-expanded/Exo2-ExtraLightExpanded.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Light Expanded';
+    src: url('fonts/exo2-expanded/Exo2-LightExpanded.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Medium Expanded';
+    src: url('fonts/exo2-expanded/Exo2-MediumExpanded.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Regular Expanded';
+    src: url('fonts/exo2-expanded/Exo2-RegularExpanded.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Semi Bold Expanded';
+    src: url('fonts/exo2-expanded/Exo2-SemiBoldExpanded.otf');
+}
+@font-face{
+    font-family: 'Exo 2 Thin Expanded';
+    src: url('fonts/exo2-expanded/Exo2-ThinExpanded.otf');
+}
+
