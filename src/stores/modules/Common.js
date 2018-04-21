@@ -25,12 +25,12 @@ export default {
       })
     },
     getNews(context,payload){
-      return axios.get(apiUrl + "/news/?limit=10").then(res=>{
+      return axios.get(apiUrl + "/news/?limit=10&order_by=-ID").then(res=>{
         context.commit("setNews",res.data.data);
       })
     },
     getSideNews(context){
-      return axios.get(apiUrl+"/news/side").then(res=>{
+      return axios.get(apiUrl+"/news/side?limit=10&order_by=-ID").then(res=>{
         context.commit("setSideNews",res.data.data)
       })
     },
