@@ -16,6 +16,7 @@ export default {
     notifications:[],
     initFeed: false,
     notificationUpdated:null,
+    messages:null
   },
   getters: {},
   actions: {
@@ -116,6 +117,18 @@ export default {
       return axios.patch(apiUrl + "notifications",{bildirim_id:payload},{
         headers: {Authorization: "Bearer "+localStorage.getItem("token")}
       })
+    },
+    createConversation(context,payload){
+      return axios.post(apiUrl + "message/create",payload,{
+        headers:{Authorization: "Bearer "+ localStorage.getItem("token")}
+      })
+    },
+    getUnreadMessages(context,payload){
+      return axios.get(apiUrl + "message/inbox?is_read=0&order_by=-created_at",{
+        headers:{Authorization: "Bearer "+localStorage.getItem("token")}
+      }).then(res=>{
+        context.commit("setMessages",res.data);
+      })
     }
   },
   mutations: {
@@ -160,6 +173,9 @@ export default {
     setNotification(state,data){
       Vue.set(state,"notifications",data);
       // Vue.set(state,"notificationUpdated",)
+    },
+    setMessages(state,data){
+      Vue.set(state,"messages",data.data.conversations);
     }
   }
 }

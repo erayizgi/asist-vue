@@ -16,15 +16,6 @@
                        accept="image/*" v-if="!avatarLoading"/>
                 <spinner v-else/>
               </div>
-              <div class="col-4">
-                <img :src="user.coverIMG" alt="" style="width:200px;">
-              </div>
-              <div class="form-group col-12">
-                <label>Kapak Resmi</label>
-                <input type="file" class="form-control" v-on:change="upload($event.target.files,'cover')"
-                       accept="image/*" v-if="!coverLoading"/>
-                <spinner v-else/>
-              </div>
             </div>
             <button class="btn btn-primary btn-block">BİLGİLERİ KAYDET</button>
           </div>

@@ -37,35 +37,13 @@
         </div>
         <div class="dropdown-menu dropdown-menu-right notification-menu messages">
           <div class="header">MESAJLAR</div>
-          <ul>
-            <li>
+          <ul v-if="messages">
+            <li v-for="msg in messages">
               <a href="#" class="clearfix">
-                <img src="out_source/avatar.jpg" alt="" class="user-image">
-                <span><strong>username</strong> ile alakalı bir şeyler oluyor</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="clearfix">
-                <img src="out_source/avatar.jpg" alt="" class="user-image">
-                <span><strong>username</strong> ile alakalı bir şeyler oluyor</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="clearfix">
-                <img src="out_source/avatar.jpg" alt="" class="user-image">
-                <span><strong>username</strong> ile alakalı bir şeyler oluyor</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="clearfix">
-                <img src="out_source/avatar.jpg" alt="" class="user-image">
-                <span><strong>username</strong> ile alakalı bir şeyler oluyor</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="clearfix">
-                <img src="out_source/avatar.jpg" alt="" class="user-image">
-                <span><strong>username</strong> ile alakalı bir şeyler oluyor</span>
+                <img :src="msg.conversation.sender.IMG" alt="" class="user-image">
+                <span><strong>{{msg.conversation.sender.adSoyad}}</strong>
+                  {{msg.message[0].content}}
+                </span>
               </a>
             </li>
           </ul>
@@ -128,11 +106,16 @@
       })
     },
     mounted(){
-      setInterval(()=>{
-        this.$store.dispatch("users/notifications").then(res=>{
+      // setInterval(()=>{
+      //   this.$store.dispatch("users/notifications").then(res=>{
+      //     // setTimeout(this.notifications(), 2000);
+      //   })
+      // },30000);
+      // setInterval(()=>{
+        this.$store.dispatch("users/getUnreadMessages").then(res=>{
           // setTimeout(this.notifications(), 2000);
         })
-      },30000);
+      // },30000);
     },
     computed:{
       user(){
@@ -147,6 +130,9 @@
       },
       notifications(){
         return this.$store.state.users.notifications;
+      },
+      messages(){
+        return this.$store.state.users.messages;
       }
     },
     data() {

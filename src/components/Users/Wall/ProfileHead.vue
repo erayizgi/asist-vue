@@ -25,9 +25,9 @@
                 </router-link>
               </span>
               <span>TAKİP <strong>{{user.following}}</strong></span>
-              <span>KUPON <strong>214</strong></span>
-              <span>KAZANAN <strong>134</strong></span>
-              <span>KAYBEDEN <strong>80</strong></span>
+              <span>KUPON <strong>{{user.coupons}}</strong></span>
+              <span>KAZANAN <strong>{{user.won}}</strong></span>
+              <span>KAYBEDEN <strong>{{user.lose}}</strong></span>
             </div>
           </div>
         </div>

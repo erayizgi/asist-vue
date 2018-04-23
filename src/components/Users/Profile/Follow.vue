@@ -7,9 +7,29 @@
     <button :class="followingClass" @mouseover="mouseOv" @mouseleave="mouseOu" v-if="isFollowing && !isLoading"
             @click="unfollow" v-html="followingContent" :disabled="isLoading"></button>
     <spinner v-if="isLoading"/>
-    <a v-if="tClass===undefined" href="javascript:void(0)" class="btn-send-message" data-toggle="modal" data-target="#new_user_message">
+    <a v-if="isFollowing" class="btn-send-message" data-toggle="modal" data-target="#new_user_message">
       <i class="fa fa-envelope"></i>MESAJ GÖNDER
     </a>
+    <div class="modal fade" id="new_user_message" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLongTitle">Mesaj Gönder</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Mesaj</label>
+              <textarea class="form-control" name="message" id="" cols="30" rows="5" v-model="message"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-aa-light" data-dismiss="modal">Kapat</button>
+            <button type="button" class="btn btn-aa-dark" @click="submitMessage">Gönder</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -31,7 +51,8 @@
         isFollowingHover: false,
         followingUser: null,
         followingClass: "btn-following",
-        followingContent: '<i class="fa fa-check"></i> TAKİP EDİLİYOR'
+        followingContent: '<i class="fa fa-check"></i> TAKİP EDİLİYOR',
+        message:"",
       }
     },
     created() {
@@ -95,6 +116,15 @@
       mouseOu() {
         this.followingContent = '<i class="fa fa-check"></i> TAKİP EDİLİYOR';
         this.followingClass = 'btn-following';
+      },
+      submitMessage(){
+        if(this.message.length > 0){
+          this.$store.dispatch("users/createConversation",{receiver_id:this.followingUser.ID,message:this.message}).then(res=>{
+            this.$swal({title:"Başarılı",text:"Mesajınız başarıyla gönderildi",type:"success"})
+          }).catch(err=>{
+            this.$swal({title:"Hata!",text:"Mesajınız gönderilemedi",type:"error"})
+          });
+        }
       }
     },
 
