@@ -124,10 +124,25 @@ export default {
       })
     },
     getUnreadMessages(context,payload){
-      return axios.get(apiUrl + "message/inbox?is_read=0&order_by=-created_at",{
+      return axios.get(apiUrl + "message/inbox?order_by=-created_at",{
         headers:{Authorization: "Bearer "+localStorage.getItem("token")}
       }).then(res=>{
         context.commit("setMessages",res.data);
+      })
+    },
+    outbox(context,payload){
+      return axios.get(apiUrl + "message/outbox?order_by=-created_at",{
+        headers:{Authorization: "Bearer "+localStorage.getItem("token")}
+      })
+    },
+    getConversation(context,payload){
+      return axios.get(apiUrl + "message/read/"+payload,{
+        headers: {Authorization: "Bearer "+localStorage.getItem("token")}
+      })
+    },
+    reply(context,payload){
+      return axios.post(apiUrl + "message/reply",payload,{
+        headers:{Authorization : "Bearer "+localStorage.getItem("token")}
       })
     }
   },

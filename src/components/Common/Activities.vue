@@ -6,7 +6,7 @@
       <li class="clearfix" v-for="activity in activities">
         <img :src="activity.IMG" class="float-left" alt="">
         <div class="float-left">
-          <a href="javascript:void(0)">{{activity.adSoyad}}</a>
+          <router-link :to="`/${activity.kullaniciAdi}`">{{activity.adSoyad}}</router-link>
           <strong>{{humanReadableActivity(activity.islem_turu)}}</strong>
           <span v-date-show="activity.islem_tarihi"></span>
         </div>

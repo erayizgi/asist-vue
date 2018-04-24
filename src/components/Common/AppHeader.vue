@@ -72,37 +72,9 @@
           <ul class="navbar-menu clearfix">
             <li class="navbar-menu-item">
               <router-link to="/streaming"><i class="fas fa-rss-square"></i> YAYINLAR</router-link>
-              <ul class="sub-menu-list">
-                <li class="cleafix">
-                  <a href="#"><i class="fas fa-microphone"></i><span>CANLI TAHMİN</span></a>
-                </li>
-                <li class="cleafix">
-                  <a href="#"><i class="fas fa-chart-pie"></i><span>TAKIM ANALİZLERİ</span></a>
-                </li>
-                <li class="cleafix">
-                  <a href="#"><i class="fas fa-sort-alpha-down"></i><span>A'dan Z'ye LİGLER</span></a>
-                </li>
-                <li class="cleafix">
-                  <a href="#"><i class="fas fa-plus"></i><span>AVRUPA DIŞI FUTBOL</span></a>
-                </li>
-              </ul>
             </li>
             <li class="navbar-menu-item">
               <a href="#"><i class="fas fa-users"></i> TAHMİNCİLER</a>
-              <ul class="sub-menu-list">
-                <li class="cleafix">
-                  <a href="#"><i class="fas fa-microphone"></i><span>CANLI TAHMİN</span></a>
-                </li>
-                <li class="cleafix">
-                  <a href="#"><i class="fas fa-chart-pie"></i><span>TAKIM ANALİZLERİ</span></a>
-                </li>
-                <li class="cleafix">
-                  <a href="#"><i class="fas fa-sort-alpha-down"></i><span>A'dan Z'ye LİGLER</span></a>
-                </li>
-                <li class="cleafix">
-                  <a href="#"><i class="fas fa-plus"></i><span>AVRUPA DIŞI FUTBOL</span></a>
-                </li>
-              </ul>
             </li>
             <li class="navbar-menu-item">
               <a href="#"><i class="fas fa-bullseye"></i> TAHMİN</a>

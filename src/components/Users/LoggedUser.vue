@@ -7,16 +7,16 @@
       <div class="dropdown float-left notify">
         <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-bell"></i>
-          <span class="badge" v-if="notifications.length > 0">{{notifications.length}}</span>
+          <span class="badge" v-if="newNotifications.length > 0">{{newNotifications.length}}</span>
         </div>
         <div class="dropdown-menu dropdown-menu-right notification-menu">
           <div class="header">BİLDİRİMLER</div>
           <ul>
             <li v-for="not in notifications" v-if="notifications.length > 0">
-              <a href="#" class="clearfix" @mouseover="read(not.bildirim_id)">
+              <router-link :to="`${not.bildirim_url}`"class="clearfix" @mouseover="read(not.bildirim_id)">
                 <img :src="not.IMG" alt="" class="user-image">
-                <span><strong>{{not.adSoyad}}</strong> ile alakalı bir şeyler oluyor</span>
-              </a>
+                <span><strong>{{not.adSoyad}}</strong> {{readableNotification(not.bildirim_tipi)}}</span>
+              </router-link>
             </li>
             <li v-if="notifications.length == 0">
               <div class="col-md-12">
@@ -33,13 +33,12 @@
       <div class="dropdown float-left msg-notify">
         <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-comment"></i>
-          <span class="badge badge-light">2</span>
         </div>
         <div class="dropdown-menu dropdown-menu-right notification-menu messages">
           <div class="header">MESAJLAR</div>
           <ul v-if="messages">
             <li v-for="msg in messages">
-              <router-link to="mesaj" class="clearfix" :style="(!msg.conversation.is_read)? 'background-color:#ececec;border-bottom:1px solid #ddd': 'background-color:auto'">
+              <router-link :to="`/message/inbox/${msg.conversation.conversation_id}`" class="clearfix">
                 <img :src="msg.conversation.sender.IMG" alt="" class="user-image">
                 <span><strong>{{msg.conversation.sender.adSoyad}}</strong>
                   {{msg.message[0].content}}
@@ -68,7 +67,9 @@
             </div>
           </div>
           <ul class="user-menu-list" id="login-after-menu" v-show="userMenuActive">
-            <li><router-link to="/user/profile">Profil</router-link></li>
+            <li>
+              <router-link to="/user/profile">Profil</router-link>
+            </li>
             <li><a href="javascript:void(0)">Kupon Yap</a></li>
             <li><a href="javascript:void(0)">Geçmiş Kuponlar</a></li>
             <li><a @click="logout">Çıkış</a></li>
@@ -83,55 +84,72 @@
 <script>
   export default {
     name: "logged-user",
-    methods:{
-      userMenuOver(){
+    methods: {
+      userMenuOver() {
         this.userMenuActive = true;
       },
-      userMenuOut(){
+      userMenuOut() {
         this.userMenuActive = false;
       },
-      logout(){
+      logout() {
         this.$store.commit("users/logout");
         this.$router.push("/");
       },
-      read(bildirim_id){
-        this.$store.dispatch("users/readNotification",bildirim_id).then(res=>{
-          this.$store.dispatch("users/notifications").then(res=>{});
+      read(bildirim_id) {
+        this.$store.dispatch("users/readNotification", bildirim_id).then(res => {
+          this.$store.dispatch("users/notifications").then(res => {
+          });
         });
+      },
+      readableNotification(type){
+        if(type==="post"){
+          return "bir gönderi paylaştı";
+        }else if(type==="kupon"){
+          return "bir kupon paylaştı";
+        }else if(type==="postOnWall"){
+          return "bir gönderiyi duvarında paylaştı";
+        }else if(type==="pm"){
+          return "sana bir mesaj gönderdi";
+        }
       }
     },
-    created(){
-      this.$store.dispatch("users/notifications").then(res=>{
+    created() {
+      this.$store.dispatch("users/notifications").then(res => {
         // setTimeout(this.notifications(), 2000);
       })
     },
-    mounted(){
+    mounted() {
       // setInterval(()=>{
       //   this.$store.dispatch("users/notifications").then(res=>{
       //     // setTimeout(this.notifications(), 2000);
       //   })
       // },30000);
       // setInterval(()=>{
-        this.$store.dispatch("users/getUnreadMessages").then(res=>{
-          // setTimeout(this.notifications(), 2000);
-        })
+      this.$store.dispatch("users/getUnreadMessages").then(res => {
+        // setTimeout(this.notifications(), 2000);
+      })
       // },30000);
     },
-    computed:{
-      user(){
+    computed: {
+      user() {
         return this.$store.state.users.user;
       },
-      wonRate(){
-        if(this.$store.state.users.stats!=null){
-          return ((this.$store.state.users.stats.won / this.$store.state.users.stats.coupons)*100).toFixed(2)
-        }else{
+      wonRate() {
+        if (this.$store.state.users.stats != null) {
+          return ((this.$store.state.users.stats.won / this.$store.state.users.stats.coupons) * 100).toFixed(2)
+        } else {
           return "Yükleniyor..";
         }
       },
-      notifications(){
+      notifications() {
         return this.$store.state.users.notifications;
       },
-      messages(){
+      newNotifications(){
+        return this.$store.state.users.notifications.filter(item=>{
+          return (item.okundu===0)? item: null;
+        })
+      },
+      messages() {
         return this.$store.state.users.messages;
       }
     },

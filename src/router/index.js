@@ -11,6 +11,8 @@ import Followers from '../components/Users/Profile/Followers';
 import News from '../components/News/News';
 import Streaming from '../components/Streaming';
 import Inbox from '../components/Users/Inbox';
+import Outbox from '../components/Users/Outbox';
+import Conversation from '../components/Users/Conversation';
 import HomeNews from '../components/Common/HomeNews';
 import NewsDetail from '../components/Common/NewsDetail';
 
@@ -65,6 +67,16 @@ export default new Router({
       component: Inbox
     },
     {
+      path: '/message/sent',
+      name: 'Outbox',
+      component: Outbox
+    },
+    {
+      path: '/message/inbox/:conversation_id',
+      name: 'Conversation',
+      component: Conversation
+    },
+    {
       path: '/:user_name',
       name: 'Wall',
       component: Wall
@@ -73,6 +85,6 @@ export default new Router({
       path: '/:user_name/followers',
       name: 'Followers',
       component: Followers
-    }
+    },
   ]
 })
