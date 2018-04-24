@@ -111,7 +111,7 @@
               <a href="#"><i class="fas fa-chart-bar"></i> İSTATİSTİKLER</a>
             </li>
             <li class="navbar-menu-item">
-              <a href="#"><i class="far fa-newspaper"></i> HABERLER</a>
+              <router-link to="/news"><i class="far fa-newspaper"></i> HABERLER</router-link>
             </li>
             <li class="navbar-menu-item">
               <a href="#"><i class="fas fa-book"></i> BAHİS SÖZLÜĞÜ</a>

@@ -178,7 +178,6 @@
         this.$validator.validateAll().then(result => {
           if (result) {
             this.$store.dispatch("users/register", this.user).then(res => {
-              console.log("resso",res);
               if(res.data.status===true){
                 this.error.hasAny = true;
                 this.error.message = {success:[res.data.data]};

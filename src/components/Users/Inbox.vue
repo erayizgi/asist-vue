@@ -1,0 +1,61 @@
+<template>
+  <section class="inbox">
+    <div class="container">
+      <div class="row">
+        <div class="col">&nbsp;</div>
+        <div class="col-12 col-sm-8 col-md-9">
+          <h1 class="page-title with-border">ÖZEL MESAJLARIM</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-4 col-md-3">
+          <ul class="inbox-navigator">
+            <li class="active">
+              <a href="inbox.html">Gelen Kutusu</a>
+            </li>
+            <li>
+              <a href="outbox.html">Gönderilenler</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-8 col-md-9">
+          <div class="messages" v-if="hasMessages">
+
+            <!--single message -->
+            <router-link :to="`/message/inbox/${msg.conversation.conversation_id}`" class="message clearfix" v-for="msg in messages">
+              <div class="avatar float-left">
+                <img :src="msg.conversation.sender.IMG" alt="">
+              </div>
+              <div class="info float-left">
+                <span class="user subject">{{msg.conversation.sender.adSoyad}}</span>
+                <span class="content">{{msg.message[0].content}}</span>
+                <span class="time" v-date-show="msg.conversation.updated_at"></span>
+              </div>
+            </router-link>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</template>
+
+<script>
+	export default {
+		name: "inbox",
+    created(){},
+    computed:{
+		  hasMessages(){
+		    return !!(this.$store.state.users.messages);
+      },
+		  messages(){
+		    return this.$store.state.users.messages;
+      }
+    }
+	}
+</script>
+
+<style scoped>
+
+</style>

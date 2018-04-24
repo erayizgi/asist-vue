@@ -10,6 +10,8 @@ import Wall from '../components/Users/Wall';
 import Followers from '../components/Users/Profile/Followers';
 import News from '../components/News/News';
 import Streaming from '../components/Streaming';
+import Inbox from '../components/Users/Inbox';
+
 Vue.use(Router);
 
 export default new Router({
@@ -49,6 +51,11 @@ export default new Router({
       path: '/user/profile/avatar',
       name: 'Avatar',
       component: Avatar
+    },
+    {
+      path: '/message/inbox',
+      name: 'Inbox',
+      component: Inbox
     },
     {
       path: '/:user_name',

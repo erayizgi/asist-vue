@@ -39,16 +39,16 @@
           <div class="header">MESAJLAR</div>
           <ul v-if="messages">
             <li v-for="msg in messages">
-              <a href="#" class="clearfix">
+              <router-link to="mesaj" class="clearfix" :style="(!msg.conversation.is_read)? 'background-color:#ececec;border-bottom:1px solid #ddd': 'background-color:auto'">
                 <img :src="msg.conversation.sender.IMG" alt="" class="user-image">
                 <span><strong>{{msg.conversation.sender.adSoyad}}</strong>
                   {{msg.message[0].content}}
                 </span>
-              </a>
+              </router-link>
             </li>
           </ul>
           <div class="footer">
-            <a href="#">Tümü</a>
+            <router-link to="/message/inbox">Tümü</router-link>
           </div>
         </div>
       </div>
