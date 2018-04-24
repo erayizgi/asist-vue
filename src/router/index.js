@@ -11,6 +11,8 @@ import Followers from '../components/Users/Profile/Followers';
 import News from '../components/News/News';
 import Streaming from '../components/Streaming';
 import Inbox from '../components/Users/Inbox';
+import HomeNews from '../components/Common/HomeNews';
+import NewsDetail from '../components/Common/NewsDetail';
 
 Vue.use(Router);
 
@@ -35,7 +37,12 @@ export default new Router({
     {
       path: '/news',
       name: 'News',
-      component: News
+      component: HomeNews
+    },
+    {
+      path: '/news/:slug',
+      name: 'NewsDetail',
+      component: NewsDetail
     },
     {
       path: '/streaming',

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Vue from 'vue';
-let apiUrl = "http://asist.test/";
-// let apiUrl = "https://asistanaliz-192209.appspot.com/";
+// let apiUrl = "http://asist.test/";
+let apiUrl = "https://asistanaliz-192209.appspot.com/";
 
 export default {
   namespaced:true,
@@ -15,27 +15,36 @@ export default {
   getters:{},
   actions:{
     getMainSlider(context,payload){
-      return axios.get(apiUrl+"/sliders/header").then(res=>{
+      return axios.get(apiUrl+"sliders/header").then(res=>{
         context.commit("setMainSlider",res.data.data);
       })
     },
     getHomeCoupons(context,payload){
-      return axios.get(apiUrl + "/home/coupons?limit=5").then(res=>{
+      return axios.get(apiUrl + "home/coupons?limit=5").then(res=>{
         context.commit("setCoupons",res.data.data);
       })
     },
     getNews(context,payload){
-      return axios.get(apiUrl + "/news/?limit=10&order_by=-ID").then(res=>{
+      return axios.get(apiUrl + "news/?limit=10&order_by=-ID").then(res=>{
         context.commit("setNews",res.data.data);
       })
     },
+
+    getNewsPage(context, payload){
+      return axios.get(apiUrl + "news/?limit="+payload.limit+"&offset="+payload.page*10+"&order_by=-ID");
+    },
+
+    getNewsDetail(context, payload){
+      return axios.get(apiUrl + "news/"+payload.slug);
+    },
+
     getSideNews(context){
-      return axios.get(apiUrl+"/news/side?limit=10&order_by=-ID").then(res=>{
+      return axios.get(apiUrl+"news/side?limit=10&order_by=-ID").then(res=>{
         context.commit("setSideNews",res.data.data)
       })
     },
     getVideoNews(context){
-      return axios.get(apiUrl+"/sliders/video").then(res=>{
+      return axios.get(apiUrl+"sliders/video").then(res=>{
         context.commit("setVideos",res.data.data);
       })
     }
