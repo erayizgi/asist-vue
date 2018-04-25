@@ -51,7 +51,7 @@
     data() {
       return {
         isLoading: false,
-        page: 0
+        page: 1
       }
     },
     created() {

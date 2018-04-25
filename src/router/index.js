@@ -15,6 +15,8 @@ import Outbox from '../components/Users/Outbox';
 import Conversation from '../components/Users/Conversation';
 import HomeNews from '../components/Common/HomeNews';
 import NewsDetail from '../components/Common/NewsDetail';
+import Forecast from '../components/Common/Forecast';
+import ForecastDetail from '../components/Common/ForecastDetail';
 
 Vue.use(Router);
 
@@ -45,6 +47,16 @@ export default new Router({
       path: '/news/:slug',
       name: 'NewsDetail',
       component: NewsDetail
+    },
+    {
+      path: '/forecast',
+      name: 'Forecast',
+      component: Forecast
+    },
+    {
+      path: '/forecast/:slug',
+      name: 'ForecastDetail',
+      component: ForecastDetail
     },
     {
       path: '/streaming',

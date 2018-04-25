@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Vue from 'vue';
-// let apiUrl = "http://asist.test/";
-let apiUrl = "https://asistanaliz-192209.appspot.com/";
+//let apiUrl = "https://asistanaliz-192209.appspot.com/";
+ let apiUrl = "http://asist.test/";
 
 export default {
   namespaced:true,
@@ -47,6 +47,32 @@ export default {
       return axios.get(apiUrl+"sliders/video").then(res=>{
         context.commit("setVideos",res.data.data);
       })
+    },
+
+    getForecast(context, payload) {
+        return axios.get(apiUrl + "forecast?limit=" + payload.limit);
+    },
+
+    getForecastDetail(context, payload){
+      return axios.get(apiUrl + "forecast/"+payload.slug);
+    },
+
+    saveForecast(context, payload){
+      return axios.post(apiUrl + "forecast", payload, {
+          headers:{Authorization: "Bearer "+ localStorage.getItem("token")}
+      });
+    },
+
+    checkForecast(context, payload){
+      return axios.post(apiUrl + "forecast/check", payload, {
+          headers:{Authorization: "Bearer "+ localStorage.getItem("token")}
+      });
+    },
+
+    commentForecast(context, payload){
+      return axios.post(apiUrl + "forecast/create", payload, {
+          headers:{Authorization: "Bearer "+ localStorage.getItem("token")}
+      });
     }
   },
   mutations:{
