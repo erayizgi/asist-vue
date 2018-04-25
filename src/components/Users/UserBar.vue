@@ -6,7 +6,7 @@
           <div class="user">
             <router-link :to="`/${user.kullaniciAdi}`"><img class="avatar" :src="user.IMG" alt=""></router-link>
             <router-link :to="`/${user.kullaniciAdi}`"><strong>{{user.adSoyad}}</strong></router-link>
-            <a href="#" class="new-coupon"><img src="static/images/icon-new-coupon.png" alt="">KUPON YAP</a>
+            <router-link to="/coupon" class="new-coupon"><img src="static/images/icon-new-coupon.png" alt="">KUPON YAP</router-link>
             <div class="bg-image" v-bind:style="`background-image:url('${user.IMG}')`"></div>
             <div class="bg-overlay"></div>
           </div>

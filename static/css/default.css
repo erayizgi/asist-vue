@@ -4186,7 +4186,6 @@ font-family: 'Exo 2', sans-serif;
 
 #second-page-content .content .match-list .match .btn-remove {
   color: #db3545;
-  display: none;
   text-align: center;
   width: 40px;
 }
@@ -4210,7 +4209,7 @@ font-family: 'Exo 2', sans-serif;
   font-family: 'Exo 2 Bold Condensed', sans-serif;
   font-size: 1rem;
   color: #000000;
-  display: none;
+  /*display: none;*/
 }
 
 #second-page-content .content .match-list .match-detail .bets {

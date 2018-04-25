@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Vue from 'vue';
-//let apiUrl = "https://asistanaliz-192209.appspot.com/";
- let apiUrl = "http://asist.test/";
+let apiUrl = "http://asist.test/";
+// let apiUrl = "https://asistanaliz-192209.appspot.com/";
 
 export default {
   namespaced:true,
@@ -10,7 +10,8 @@ export default {
     coupons:[],
     news:[],
     sideNews:[],
-    videos:[]
+    videos:[],
+    matches:[]
   },
   getters:{},
   actions:{
@@ -46,6 +47,18 @@ export default {
     getVideoNews(context){
       return axios.get(apiUrl+"sliders/video").then(res=>{
         context.commit("setVideos",res.data.data);
+      })
+    },
+    getMatches(context,payload){
+      return axios.get(apiUrl + "coupon/events").then(res=>{
+        context.commit("setMatches",res);
+      })
+    },
+    getOddOptions(context,payload){
+      return axios.get(apiUrl +"coupon/odds/"+payload,{
+        headers:{Authorization: "Bearer "+localStorage.getItem("token")}
+      }).then(res=>{
+        context.commit("setOdds",{match_id: payload,odds:res.data.data});
       })
     },
 
@@ -90,6 +103,18 @@ export default {
     },
     setVideos(state,data){
       Vue.set(state,"videos",data.data);
+    },
+    setMatches(state,data){
+      Vue.set(state,"matches",data.data.data.data);
+    },
+    setOdds(state,data){
+      let it = state.matches.findIndex(item=>{
+        if(item.event_id === data.match_id)
+          return item;
+
+      });
+      console.log("index",it);
+      Vue.set(state.matches[it],"odds",data.odds);
     }
   }
 }

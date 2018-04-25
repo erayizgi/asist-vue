@@ -15,6 +15,7 @@ import Outbox from '../components/Users/Outbox';
 import Conversation from '../components/Users/Conversation';
 import HomeNews from '../components/Common/HomeNews';
 import NewsDetail from '../components/Common/NewsDetail';
+import Coupon from '../components/Common/Coupon';
 import Forecast from '../components/Common/Forecast';
 import ForecastDetail from '../components/Common/ForecastDetail';
 
@@ -87,6 +88,11 @@ export default new Router({
       path: '/message/inbox/:conversation_id',
       name: 'Conversation',
       component: Conversation
+    },
+    {
+      path:'/coupon',
+      name:'Coupon',
+      component: Coupon
     },
     {
       path: '/:user_name',

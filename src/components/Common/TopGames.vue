@@ -6,22 +6,21 @@
       <div class="row">
         <!-- single tab button -->
         <div class="col-6 col-bi-12 item football nopadding">
-          <a href="#football-tab-mobile" class="tab-link active align-items-center"><i class="fas fa-futbol"></i></a>
+          <a data-target="football-tab-mobile" href="javascript:;" class="tab-link active align-items-center"><i
+            class="fas fa-futbol"></i></a>
         </div>
         <!-- single tab button -->
         <div class="col-6 col-bi-12 item basketball nopadding">
-          <a href="#basketball-tab-mobile" class="tab-link"><i class="fas fa-basketball-ball"></i></a>
+          <a data-target="basketball-tab-mobile" href="javascript:;" class="tab-link"><i
+            class="fas fa-basketball-ball"></i></a>
         </div>
       </div>
     </div>
     <!-- tab list -->
     <div class="top-games-tab-item-list" role="tabpanel">
       <!-- single tab -->
-      <div class="top-games-tab-items clearfix tab-pane show">
-        <slick
-          ref="slick"
-          :options="slickOptions"
-        >
+      <div class="top-games-tab-items clearfix tab-pane show" id="football-tab-mobile">
+        <slick ref="slick" :options="slickOptions">
           <div class="item float-left">
             <div class="score">
               <div class="team">
@@ -211,7 +210,7 @@
       </div>
 
 
-       <!--single tab-->
+      <!--single tab-->
       <div class="top-games-tab-items clearfix tab-pane" id="basketball-tab-mobile">
         <!-- single game -->
         <div class="item float-left">
@@ -223,7 +222,8 @@
             </div>
             <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
             <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt="" class="team-image">
+              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt=""
+                   class="team-image">
               <div class="team-code">FCB</div>
             </div>
           </div>
@@ -237,7 +237,8 @@
         <div class="item float-left">
           <div class="score">
             <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt="" class="team-image">
+              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt=""
+                   class="team-image">
               <div class="team-code">FCB</div>
             </div>
             <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
@@ -257,7 +258,8 @@
         <div class="item float-left">
           <div class="score">
             <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt="" class="team-image">
+              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt=""
+                   class="team-image">
               <div class="team-code">FCB</div>
             </div>
             <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
@@ -277,7 +279,8 @@
         <div class="item float-left">
           <div class="score">
             <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt="" class="team-image">
+              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt=""
+                   class="team-image">
               <div class="team-code">FCB</div>
             </div>
             <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
@@ -297,7 +300,8 @@
         <div class="item float-left">
           <div class="score">
             <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt="" class="team-image">
+              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt=""
+                   class="team-image">
               <div class="team-code">FCB</div>
             </div>
             <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
@@ -349,6 +353,14 @@
     components: {
       slick
       //Flickity
+    },
+    mounted() {
+      $(document).ready(() => {
+        $('.tab-link').on('click', function () {
+          $(".tab-pane").removeClass("show");
+          $('#' + $(this).attr("data-target")).addClass("show");
+        });
+      });
     }
   }
 </script>
