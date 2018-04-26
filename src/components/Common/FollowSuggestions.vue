@@ -4,7 +4,7 @@
     <ul>
       <!-- single recommendation-->
       <li class="clearfix">
-        <img src="out_source/avatar.jpg" class="float-left" alt="">
+        <img src="static/out_source/avatar.jpg" class="float-left" alt="">
         <div class="float-left">
           <strong>MAKALECİ</strong>
           <a href="javascript:void(0)" class="btn-follow"><i class="fa fa-plus"></i>TAKİP ET</a>
@@ -12,7 +12,7 @@
       </li>
       <!-- single recommendation-->
       <li class="clearfix">
-        <img src="out_source/avatar.jpg" class="float-left" alt="">
+        <img src="static/out_source/avatar.jpg" class="float-left" alt="">
         <div class="float-left">
           <strong>MAKALECİ</strong>
           <a href="javascript:void(0)" class="btn-following"><i class="fa fa-plus"></i>TAKİPTE</a>
@@ -20,7 +20,7 @@
       </li>
       <!-- single recommendation-->
       <li class="clearfix">
-        <img src="out_source/avatar.jpg" class="float-left" alt="">
+        <img src="static/out_source/avatar.jpg" class="float-left" alt="">
         <div class="float-left">
           <strong>MAKALECİ</strong>
           <a href="javascript:void(0)" class="btn-follow"><i class="fa fa-plus"></i>TAKİP ET</a>
@@ -28,7 +28,7 @@
       </li>
       <!-- single recommendation-->
       <li class="clearfix">
-        <img src="out_source/avatar.jpg" class="float-left" alt="">
+        <img src="static/out_source/avatar.jpg" class="float-left" alt="">
         <div class="float-left">
           <strong>MAKALECİ</strong>
           <a href="javascript:void(0)" class="btn-follow"><i class="fa fa-plus"></i>TAKİP ET</a>
