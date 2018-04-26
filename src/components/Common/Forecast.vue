@@ -21,7 +21,9 @@
                         <tr v-if="!isLoading" v-for="forecast in setForecast">
                             <td scope="row">{{forecast.event_oid}}</td>
                             <td>{{ forecast.league_name }}</td>
-                            <td><a href="do-comment.html">{{ forecast.home }} - {{ forecast.away }}</a></td>
+                            <td>
+                                <router-link :to="`/forecast/${forecast.identifier_id}`">{{ forecast.home }} - {{ forecast.away }}</router-link>
+                            </td>
                             <td>
                                 <router-link :to="`/forecast/${forecast.identifier_id}`" class="btn btn-sm btn-info">Yorum Yap</router-link>
                             </td>
