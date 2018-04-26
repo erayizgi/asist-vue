@@ -19,6 +19,7 @@ import Coupon from '../components/Common/Coupon';
 import Forecast from '../components/Common/Forecast';
 import ForecastDetail from '../components/Common/ForecastDetail';
 import Pages from '../components/Common/Pages';
+import NotificationsHome from '../components/Common/NotificationsHome'
 
 Vue.use(Router);
 
@@ -94,6 +95,11 @@ export default new Router({
             path: '/message/inbox/:conversation_id',
             name: 'Conversation',
             component: Conversation
+        },
+        {
+            path: '/notifications',
+            name: 'NotificationsHome',
+            component: NotificationsHome
         },
         {
             path: '/coupon',

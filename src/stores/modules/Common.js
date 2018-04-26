@@ -12,7 +12,8 @@ export default {
     news: [],
     sideNews: [],
     videos: [],
-    matches: []
+    matches: [],
+    pages : [],
   },
   getters: {},
   actions: {
@@ -99,12 +100,38 @@ export default {
       return axios.get(apiUrl + "pages");
     },
 
+    getFooterPages(context, payload){
+        return axios.get(apiUrl + "pages").then((res) => {
+            context.commit("setPages", res.data.data.data);
+        })
+    },
+
     getPageDetail(context, payload) {
       return axios.get(apiUrl + "pages/" + payload.slug);
+    },
+
+    getNotificationsHome(context, payload){
+        return axios.get(apiUrl + "notifications/", {
+            headers: {Authorization: "Bearer " + localStorage.getItem("token")}
+        });
+    },
+
+    markAsReadNotifications(context, payload){
+        return axios.patch(apiUrl + "notifications/all", null, {
+            headers: {Authorization: "Bearer " + localStorage.getItem("token")}
+        });
+    },
+
+    getTopPredictors(context, payload){
+        return axios.get(apiUrl + "home/population");
+
     }
 
   },
   mutations: {
+    setPages(state, data){
+      Vue.set(state, "pages", data);
+    },
     setMainSlider(state, data) {
       Vue.set(state, "mainSlider", data.data);
     },

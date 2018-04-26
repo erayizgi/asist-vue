@@ -1,10 +1,11 @@
 <template>
     <section id="todo-home">
         <div class="container task-detail-wrapper">
+            <spinner v-if="isLoading"></spinner>
             <div class="row">
                 <div class="col-12 col-sm-4 col-md-3">
                     <ul class="subpage-list-menu">
-                        <li v-for="list in pages" :class="pageActive(list.URL)">
+                        <li v-for="list in pages">
                             <router-link :to="`/pages/${list.URL}`">{{list.sayfaBaslik}}</router-link>
                         </li>
                         <!--<li class="active"><a href="profil-3.html">Profil Resmi İşlemleri</a></li>-->
@@ -22,9 +23,10 @@
 </template>
 
 <script>
+    import Spinner from "./Spinner";
     export default {
         name: "Pages",
-
+        components: {Spinner},
         data() {
             return {
                 page: null,
@@ -42,16 +44,13 @@
             });
 
             this.$store.dispatch("common/getPageDetail", {slug: this.$route.params.slug}).then((res) => {
+
                 this.page = res.data.data.data;
                 this.isLoading = false;
             });
         },
 
-        methods: {
-            pageActive(url) {
-                return (url == this.$route.params.slug) ? 'active' : null;
-            },
-        }
+
     }
 </script>
 
