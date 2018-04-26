@@ -39,16 +39,24 @@
                   <li class="page-item active"><a class="page-link" href="#">1</a></li>
                   <li class="page-item"><a class="page-link" href="#">2</a></li>
                   <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Sonraki</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Sonraki</a>3</li>
                 </ul>
 
                 <!-- COMMENT -->
                 <div class="comment clearfix" v-for="comment in comments">
+                    <div v-if="isLogged">
+                        <em class="pull-right" v-if="comment.kullaniciAdi === user.kullaniciAdi">
+                            <a class="btn btn-default" @click="deleteComment(comment.tahmin_id)">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </em>
+                    </div>
                   <div class="avatar float-left">
                     <img :src="comment.IMG" alt="">
                   </div>
-                  <a href="#">{{comment.adSoyad}}</a> <span class="date" v-date-show="comment.created_at"></span>
+                  <router-link :to="`/${comment.kullaniciAdi}`">{{comment.adSoyad}}</router-link> <span class="date" v-date-show="comment.created_at"></span>
                   <p>{{comment.tahmin_yorumu}}</p>
+
                 </div>
               </div>
 
@@ -104,7 +112,7 @@
 
                   <h3 class="title with-border">Anket sonuçları</h3>
 
-                  <strong class="progress-label">İspanya kazanır</strong>
+                  <strong class="progress-label">{{ details.home }}</strong>
                   <div class="progress">
                     <div class="progress-bar bg-aa-pink" role="progressbar"
                          :style="'width:'+(opt_one/(opt_one+opt_two+opt_three))*100+'%'" aria-valuenow="50"
@@ -118,7 +126,7 @@
                          aria-valuemin="0" aria-valuemax="100">{{(opt_two/(opt_one+opt_two+opt_three))*100}}
                     </div>
                   </div>
-                  <strong class="progress-label">Arjantin kazanır</strong>
+                  <strong class="progress-label">{{ details.away }}</strong>
                   <div class="progress">
                     <div class="progress-bar bg-info" role="progressbar"
                          :style="'width:'+(opt_three/(opt_one+opt_two+opt_three))*100+'%'" aria-valuenow="50"
@@ -164,6 +172,9 @@
     },
 
     computed: {
+      user(){
+        return this.$store.state.users.user;
+      },
       isLogged() {
         return this.$store.state.users.isLogged;
       }
@@ -194,7 +205,29 @@
             this.isLoading = false;
           });
         });
-      }
+      },
+
+        deleteComment(comment_id) {
+            this.$swal({
+                title: "Yorumumu Sil",
+                text: "Yorumunuzu silmek istediğinize emin misiniz? Bu işlemi geri almanız mümkün olmayacaktır.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yorumu sil",
+                cancelButtonText: "İptal"
+            }).then(result => {
+                if (result.value) {
+                    this.$store.dispatch("common/deleteForecastComment", {comment_id: comment_id})
+                        .then(res => {
+                            this.$store.dispatch("common/getForecastDetail", {slug: this.$route.params.slug}).then((res) => {
+                                this.details = res.data.data.data;
+                                this.comments = res.data.data.comments;
+                                this.isLoading = false;
+                            });
+                        });
+                }
+            })
+        },
     },
 
     mounted() {

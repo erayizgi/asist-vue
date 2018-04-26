@@ -86,7 +86,15 @@ export default {
       return axios.post(apiUrl + "forecast/create", payload, {
           headers:{Authorization: "Bearer "+ localStorage.getItem("token")}
       });
-    }
+    },
+
+  deleteForecastComment(context,payload) {
+      return axios.delete(apiUrl + "forecast/", payload, {
+          headers: {Authorization: "Bearer " + localStorage.getItem("token")}
+      })
+  }
+
+
   },
   mutations:{
     setMainSlider(state,data){
