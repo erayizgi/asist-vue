@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Vue from 'vue';
-// let apiUrl = "http://asist.test/";
-let apiUrl = "https://asistanaliz-192209.appspot.com/";
+let apiUrl = "http://asist.test/";
+// let apiUrl = "https://asistanaliz-192209.appspot.com/";
 
 export default {
   namespaced: true,
@@ -144,6 +144,18 @@ export default {
       return axios.post(apiUrl + "message/reply",payload,{
         headers:{Authorization : "Bearer "+localStorage.getItem("token")}
       })
+    },
+    checkBalance(context,payload){
+      return axios.get(apiUrl + "users/balance",{
+        headers:{Authorization: "Bearer "+localStorage.getItem("token")}
+      })
+    },
+    updateBalance(context,payload){
+      return axios.get(apiUrl + "users/balance",{
+        headers:{Authorization: "Bearer "+localStorage.getItem("token")}
+      }).then(res=>{
+        context.commit("setBalance",res.data.data.balance);
+      })
     }
   },
   mutations: {
@@ -191,6 +203,9 @@ export default {
     },
     setMessages(state,data){
       Vue.set(state,"messages",data.data.conversations);
+    },
+    setBalance(state,data){
+      Vue.set(state.stats,"balance",data);
     }
   }
 }

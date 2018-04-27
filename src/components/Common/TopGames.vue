@@ -19,7 +19,7 @@
     <!-- tab list -->
     <div class="top-games-tab-item-list" role="tabpanel">
       <!-- single tab -->
-      <div class="top-games-tab-items clearfix tab-pane show" id="football-tab-mobile">
+      <div class="top-games-tab-items clearfix tab-pane show" id="football-tab-mobile" v-if="football">
         <slick ref="slick" :options="slickOptions">
           <div class="item float-left" v-for="f in football">
             <div class="score">
@@ -45,7 +45,7 @@
 
       <!--single tab-->
       <div class="top-games-tab-items clearfix tab-pane" id="basketball-tab-mobile">
-        <slick ref="slick_2" :options="slickOptions">
+        <slick ref="basket" :options="slickOptions">
         <!-- single game -->
         <div class="item float-left" v-for="b in basketball">
           <div class="score">
@@ -84,7 +84,7 @@
         slickOptions: {
           arrows: true,
           rows: 1,
-          slidesToShow: 1, // if mobile 1
+          slidesToShow: 5, // if mobile 1
           slidesToScroll: 1,
           infinite: true,
           prevArrow: '<button class="btn-prev" type="button"><i class="fas fa-chevron-left"></i></button>',
@@ -126,6 +126,8 @@
       $(document).ready(() => {
         $('.tab-link').on('click', function () {
           $(".tab-pane").removeClass("show");
+          $(".tab-link").removeClass("active");
+          $(this).addClass("active");
           $('#' + $(this).attr("data-target")).addClass("show");
         });
       });

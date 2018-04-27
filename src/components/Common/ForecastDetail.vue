@@ -260,12 +260,12 @@
         }
         this.$store.dispatch("common/getForecastDetail", {
           slug: this.$route.params.slug,
-          offset: offset * 2
+          offset: offset * 10
         }).then((res) => {
           this.details = res.data.data.data;
           this.comments = res.data.data.comments;
           this.isLoading = false;
-          this.pageCount = Math.round(res.data.data.metadata.count / 2);
+          this.pageCount = Math.round(res.data.data.metadata.count / 10);
         });
       }
     },
@@ -291,7 +291,7 @@
         this.details = res.data.data.data;
         this.comments = res.data.data.comments;
         this.isLoading = false;
-        this.pageCount = Math.round(res.data.data.metadata.count / 2);
+        this.pageCount = Math.round(res.data.data.metadata.count / 10);
         $(document).ready(() => {
           $('.tab-link').on('click', function () {
             $(".tab-pane").removeClass("show");

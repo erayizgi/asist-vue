@@ -1,4 +1,8 @@
 import Vue from 'vue';
+import axios from 'axios';
+let apiUrl = "http://asist.test/";
+//let apiUrl = "https://asistanaliz-192209.appspot.com/";
+
 export default{
   namespaced:true,
   state:{
@@ -19,7 +23,11 @@ export default{
       context.commit("updateMBS");
     },
     save(context,payload){
-
+      return axios.post(apiUrl + "coupon/send",payload,{
+        headers:{Authorization: "Bearer "+localStorage.getItem("token")}
+      }).then(()=>{
+        context.commit("clear");
+      });
     }
   },
   mutations:{
@@ -53,6 +61,11 @@ export default{
           Vue.set(state,"mbs",item.event.mbc);
         }
       })
+    },
+    clear(state){
+      Vue.set(state,"coupon",[]);
+      Vue.set(state,"totalOdd",0);
+      Vue.set(state,"mbs",3);
     }
 
   }

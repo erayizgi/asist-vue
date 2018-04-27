@@ -30,8 +30,17 @@
         </div>
         <div class="col-md-4 nopadding">
           <div class="coupon" id="user-coupon">
-            <a href="#user-coupon" class="btn-close float-right"><i class="fas fa-times"></i></a>
-            <div class="coupon-title">KUPON YAP</div>
+            <div style="background:#36243f;padding:15px;">
+              <img :src="user.IMG" alt="" class="avatar"
+                   style="width:80px;height:80px;border-radius:100%;float:left;margin-right:15px;">
+              <h4 class="text-white pull-left mt-2">{{user.adSoyad}}</h4>
+              <h5 class="text-white" style="font-weight: 900;width:70%!important;" v-if="stats">{{stats.balance}}
+                AP</h5>
+            </div>
+            <div class="coupon-title">
+              <div class="clearfix"></div>
+              KUPON YAP
+            </div>
             <div class="coupon-items">
               <div class="wrapper" v-if="!hasCoupon">
                 <div class="item clearfix">
@@ -40,7 +49,7 @@
               </div>
               <div class="wrapper" v-if="hasCoupon">
                 <!--single item-->
-                <div class="item clearfix" v-for="matches in coupon">
+                <div class="item clearfix" v-for="matches in coupon" v-if="!isLoading">
                   <div class="football float-left">&nbsp;</div>
                   <div class="data float-left">
                     <div class="clearfix">
@@ -59,10 +68,11 @@
                     </div>
                   </div>
                 </div>
-
+                <spinner v-if="isLoading"/>
               </div>
               <div class="coupon-rate clearfix" id="c-rate">
                 <span>Oran: <strong>{{totalOdd}}</strong></span>
+
                 <input type="text" name="times" class="rate-times form-control" value="" placeholder="Misli"
                        v-model="misli">
               </div>
@@ -74,7 +84,8 @@
                 <textarea name="comment" class="form-control" v-model="comment"></textarea>
               </div>
               <div class="btn-share">
-                <a href="javascript:;" @click="save">KUPONU PAYLAŞ</a>
+                <a href="javascript:;" @click="save" v-if="!isLoading">KUPONU PAYLAŞ</a>
+                <spinner v-if="isLoading"/>
               </div>
             </div>
           </div>
@@ -88,16 +99,19 @@
 
 <script>
   import Match from './Matches/Match';
+  import Spinner from "./Spinner";
 
   export default {
     components: {
+      Spinner,
       Match
     },
     name: "coupon",
     data() {
       return {
         misli: 3,
-        comment: ''
+        comment: '',
+        isLoading: false
       }
     },
     created() {
@@ -115,7 +129,13 @@
       },
       totalOdd() {
         return this.$store.state.coupon.totalOdd.toFixed(2);
-      }
+      },
+      user() {
+        return this.$store.state.users.user;
+      },
+      stats() {
+        return this.$store.state.users.stats;
+      },
     },
     methods: {
       removeMatch(odd_option_id) {
@@ -123,9 +143,64 @@
         });
       },
       save() {
-        if (this.$store.state.coupon.coupon.length > 3) {
-          if (this.misli >= this.$store.state.coupon.mbs) {
-            this.$store.dispatch("coupon/save").then();
+        if (this.$store.state.coupon.coupon.length >= this.$store.state.coupon.mbs) {
+          if (this.misli >= 3) {
+            let data = {
+              coupon: {
+                misli: this.misli,
+                aciklama: this.comment
+              },
+              events: []
+            };
+            this.$store.state.coupon.coupon.forEach(item => {
+              let event = {
+                odd: item.odd,
+                home: item.event.home,
+                away: item.event.away,
+                odd_type: item.odd_type,
+                odd_option: item.odd_option,
+                odd_option_id: item.odd_option_id,
+                event_id: item.event.event_id
+              };
+              data.events.push(event);
+            });
+            let balance = 0;
+            this.isLoading = true;
+            this.$store.dispatch("users/checkBalance").then(res => {
+              balance = res.data.data.balance;
+              if (balance >= this.misli) {
+                this.$swal({
+                  title: "Kuponu Paylaş",
+                  text: "Kuponu paylaşmak istediğinizden emin misiniz? Bu işlem sonucunda Asist Puan bakiyenizden "+this.misli+" puan düşülecektir",
+                  type: "warning",
+                  showCancelButton: true,
+                  confirmButtonText: "Paylaş",
+                  cancelButtonText: "İptal"
+                }).then(confirm => {
+                  this.$store.dispatch("coupon/save", data).then(() => {
+                    this.$store.dispatch("users/updateBalance").then(() => {
+
+                      this.isLoading = false;
+                      this.$swal({
+                        title: "Başarılı",
+                        text: "Kuponunuz başarıyla paylaşıldı",
+                        type: "success"
+                      });
+                    })
+                  });
+                })
+
+              } else {
+                this.$swal({
+                  title: "Hata",
+                  text: "Kupon paylaşmak için yeterli Asist Puan'ınız bulunmamaktadır",
+                  type: "error"
+                });
+                this.isLoading = false;
+
+              }
+            });
+
           } else {
             this.$swal({title: "Hata", text: "Kupon için 3 misliden az girilemez.", type: "error"});
           }

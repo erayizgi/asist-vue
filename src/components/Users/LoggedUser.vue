@@ -2,7 +2,7 @@
   <div class="links col-12 col-md-8">
     <div class="al-menu clearfix">
       <!-- new coupon button -->
-      <a href="#" class="btn-new-coupon"><i class="fas fa-plus"></i>YENİ KUPON <span>YAP!</span></a>
+      <router-link to="/coupon" class="btn-new-coupon"><i class="fas fa-plus"></i>YENİ KUPON <span>YAP!</span></router-link>
       <!-- notifications -->
       <div class="dropdown float-left notify">
         <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,7 +60,7 @@
           <div class="clearfix">
             <div class="float-left">
               <strong>{{user.adSoyad}}</strong>
-              <span>%{{wonRate}}</span>
+              <span>{{stats.balance}} AP</span>
             </div>
             <div class="float-right">
               <i class="fas fa-chevron-down"></i>
@@ -133,6 +133,9 @@
     computed: {
       user() {
         return this.$store.state.users.user;
+      },
+      stats(){
+        return this.$store.state.users.stats;
       },
       wonRate() {
         if (this.$store.state.users.stats != null) {

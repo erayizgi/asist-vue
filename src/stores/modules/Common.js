@@ -69,7 +69,7 @@ export default {
     },
 
     getForecastDetail(context, payload) {
-      return axios.get(apiUrl + "forecast/" + payload.slug+"?limit=2&offset="+payload.offset);
+      return axios.get(apiUrl + "forecast/" + payload.slug+"?limit=10&offset="+payload.offset);
     },
 
     saveForecast(context, payload) {
