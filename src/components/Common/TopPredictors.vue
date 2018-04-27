@@ -10,7 +10,7 @@
             <div class="col-md-7th" v-for="predictor in predictors">
                 <div class="predictor clearfix">
                     <div class="predictor-avatar float-left">
-                        <img src="out_source/predictor.jpg" alt="">
+                        <img src="static/out_source/predictor.jpg" alt="">
                     </div>
                     <div class="predictor-detail float-left">
                         <span>ADRENALINHO</span>

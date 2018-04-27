@@ -5,6 +5,7 @@ import Posts from './modules/Posts';
 import Comments from "./modules/Comments";
 import Streams from "./modules/Streams";
 import Common from "./modules/Common";
+import Coupon from "./modules/Coupon";
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -13,7 +14,8 @@ const store = new Vuex.Store({
     posts:Posts,
     comments:Comments,
     streams:Streams,
-    common: Common
+    common: Common,
+    coupon: Coupon,
   }
 });
 export default store;
