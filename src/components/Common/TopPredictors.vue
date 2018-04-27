@@ -10,12 +10,14 @@
             <div class="col-md-7th" v-for="predictor in predictors">
                 <div class="predictor clearfix">
                     <div class="predictor-avatar float-left">
-                        <img src="static/out_source/predictor.jpg" alt="">
+                        <img :src="predictor.IMG" alt="" style="width: 70px!important; height: 70px!important">
                     </div>
                     <div class="predictor-detail float-left">
-                        <span>ADRENALINHO</span>
-                        <strong>%43.80</strong>
-                        <a href="#">Takip Et</a>
+                        <span>{{ predictor.kullaniciAdi}}</span>
+                        <strong>%{{ score(predictor.yuzde)}}</strong>
+                        <follow v-if="isLogged" :follower="user.kullaniciAdi" :following="predictor.kullaniciAdi"/>
+                        <a v-if="!isLogged" href="javascript:;" @click="followUser">Takip Et</a>
+                        <!-- <follow :follower="user.kullaniciAdi" :t-class="'col-12 profile-buttons'" :following="usr.data.kullaniciAdi"/> -->
                     </div>
                 </div>
             </div>
@@ -24,12 +26,33 @@
 </template>
 
 <script>
+    import Follow from "../Users/Profile/Follow";
+
     export default {
         name: "top-predictors",
-
-        data(){
+        components: {Follow},
+        data() {
             return {
                 predictors: null
+            }
+        },
+
+        methods: {
+            followUser() {
+                this.$swal({title: 'Hata', text: 'Kullanıcı Takip Etmek için Giriş Yapmalısınız!', type: 'warning'});
+            },
+
+            score(score){
+              return  parseFloat(score).toFixed(2);
+            },
+        },
+
+        computed: {
+            user() {
+                return this.$store.state.users.user;
+            },
+            isLogged() {
+                return this.$store.state.users.isLogged;
             }
         },
 

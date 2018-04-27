@@ -92,8 +92,8 @@
                             <a href="#"><i class="fas fa-book"></i> BAHİS SÖZLÜĞÜ</a>
                         </li>
                         <li class="space"></li>
-                        <li class="store"><a href="#"><img src="static/images/google-play.png"></a></li>
-                        <li class="store"><a href="#"><img src="static/images/apple-store.png"></a></li>
+                        <li class="store"><a href="#"><img  src="static/images/google-play.png"></a></li>
+                        <li class="store"><a href="#"><img   src="static/images/apple-store.png"></a></li>
                         <li class="space"></li>
                         <li class="social"><a href="#"><img src="static/images/icon-facebook.png"></a></li>
                         <li class="social"><a href="#"><img src="static/images/icon-twitter.png"></a></li>

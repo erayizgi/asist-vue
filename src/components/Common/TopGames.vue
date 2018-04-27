@@ -21,189 +21,22 @@
       <!-- single tab -->
       <div class="top-games-tab-items clearfix tab-pane show" id="football-tab-mobile">
         <slick ref="slick" :options="slickOptions">
-          <div class="item float-left">
+          <div class="item float-left" v-for="f in football">
             <div class="score">
               <div class="team">
-                <img src="static/out_source/parcalona.png" alt="" class="team-image">
-                <div class="team-code">FCB</div>
+                <img :src="f.home_logo" alt="" class="team-image" style="width: 60px!important; height: 70px!important;">
+                <div class="team-code">{{f.home_name}}</div>
               </div>
-              <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
+              <div class="date"><i>vs.</i><span v-date-show="f.created_at"></span></div>
               <div class="team">
-                <img src="static/out_source/real-madrid.png" alt="" class="team-image">
-                <div class="team-code">MAD</div>
+                <img :src="f.away_logo" alt="" class="team-image" style="width: 60px!important; height: 70px!important;">
+                <div class="team-code">{{f.away_name}}</div>
               </div>
             </div>
             <div class="bets clearfix">
-              <span class="home"><i>1</i> <strong>2.5</strong></span>
-              <span class="draw"><i>X</i> <strong>3.10</strong></span>
-              <span class="away"><i>2</i> <strong>2.5</strong></span>
-            </div>
-          </div>
-          <!-- single game -->
-          <div class="item float-left">
-            <div class="score">
-              <div class="team">
-                <img src="static/out_source/parcalona.png" alt="" class="team-image">
-                <div class="team-code">FCB</div>
-              </div>
-              <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
-              <div class="team">
-                <img src="static/out_source/real-madrid.png" alt="" class="team-image">
-                <div class="team-code">MAD</div>
-              </div>
-            </div>
-            <div class="bets clearfix">
-              <span class="home"><i>1</i> <strong>2.5</strong></span>
-              <span class="draw"><i>X</i> <strong>3.10</strong></span>
-              <span class="away"><i>2</i> <strong>2.5</strong></span>
-            </div>
-          </div>
-          <div class="item float-left">
-            <div class="score">
-              <div class="team">
-                <img src="static/out_source/parcalona.png" alt="" class="team-image">
-                <div class="team-code">FCB</div>
-              </div>
-              <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
-              <div class="team">
-                <img src="static/out_source/real-madrid.png" alt="" class="team-image">
-                <div class="team-code">MAD</div>
-              </div>
-            </div>
-            <div class="bets clearfix">
-              <span class="home"><i>1</i> <strong>2.5</strong></span>
-              <span class="draw"><i>X</i> <strong>3.10</strong></span>
-              <span class="away"><i>2</i> <strong>2.5</strong></span>
-            </div>
-          </div>
-          <!-- single game -->
-          <div class="item float-left">
-            <div class="score">
-              <div class="team">
-                <img src="static/out_source/parcalona.png" alt="" class="team-image">
-                <div class="team-code">FCB</div>
-              </div>
-              <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
-              <div class="team">
-                <img src="static/out_source/real-madrid.png" alt="" class="team-image">
-                <div class="team-code">MAD</div>
-              </div>
-            </div>
-            <div class="bets clearfix">
-              <span class="home"><i>1</i> <strong>2.5</strong></span>
-              <span class="draw"><i>X</i> <strong>3.10</strong></span>
-              <span class="away"><i>2</i> <strong>2.5</strong></span>
-            </div>
-          </div>
-          <div class="item float-left">
-            <div class="score">
-              <div class="team">
-                <img src="static/out_source/parcalona.png" alt="" class="team-image">
-                <div class="team-code">FCB</div>
-              </div>
-              <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
-              <div class="team">
-                <img src="static/out_source/real-madrid.png" alt="" class="team-image">
-                <div class="team-code">MAD</div>
-              </div>
-            </div>
-            <div class="bets clearfix">
-              <span class="home"><i>1</i> <strong>2.5</strong></span>
-              <span class="draw"><i>X</i> <strong>3.10</strong></span>
-              <span class="away"><i>2</i> <strong>2.5</strong></span>
-            </div>
-          </div>
-          <!-- single game -->
-          <div class="item float-left">
-            <div class="score">
-              <div class="team">
-                <img src="static/out_source/parcalona.png" alt="" class="team-image">
-                <div class="team-code">FCB</div>
-              </div>
-              <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
-              <div class="team">
-                <img src="static/out_source/real-madrid.png" alt="" class="team-image">
-                <div class="team-code">MAD</div>
-              </div>
-            </div>
-            <div class="bets clearfix">
-              <span class="home"><i>1</i> <strong>2.5</strong></span>
-              <span class="draw"><i>X</i> <strong>3.10</strong></span>
-              <span class="away"><i>2</i> <strong>2.5</strong></span>
-            </div>
-          </div>
-          <div class="item float-left">
-            <div class="score">
-              <div class="team">
-                <img src="static/out_source/parcalona.png" alt="" class="team-image">
-                <div class="team-code">FCB</div>
-              </div>
-              <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
-              <div class="team">
-                <img src="static/out_source/real-madrid.png" alt="" class="team-image">
-                <div class="team-code">MAD</div>
-              </div>
-            </div>
-            <div class="bets clearfix">
-              <span class="home"><i>1</i> <strong>2.5</strong></span>
-              <span class="draw"><i>X</i> <strong>3.10</strong></span>
-              <span class="away"><i>2</i> <strong>2.5</strong></span>
-            </div>
-          </div>
-          <!-- single game -->
-          <div class="item float-left">
-            <div class="score">
-              <div class="team">
-                <img src="static/out_source/parcalona.png" alt="" class="team-image">
-                <div class="team-code">FCB</div>
-              </div>
-              <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
-              <div class="team">
-                <img src="static/out_source/real-madrid.png" alt="" class="team-image">
-                <div class="team-code">MAD</div>
-              </div>
-            </div>
-            <div class="bets clearfix">
-              <span class="home"><i>1</i> <strong>2.5</strong></span>
-              <span class="draw"><i>X</i> <strong>3.10</strong></span>
-              <span class="away"><i>2</i> <strong>2.5</strong></span>
-            </div>
-          </div>
-          <div class="item float-left">
-            <div class="score">
-              <div class="team">
-                <img src="static/out_source/parcalona.png" alt="" class="team-image">
-                <div class="team-code">FCB</div>
-              </div>
-              <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
-              <div class="team">
-                <img src="static/out_source/real-madrid.png" alt="" class="team-image">
-                <div class="team-code">MAD</div>
-              </div>
-            </div>
-            <div class="bets clearfix">
-              <span class="home"><i>1</i> <strong>2.5</strong></span>
-              <span class="draw"><i>X</i> <strong>3.10</strong></span>
-              <span class="away"><i>2</i> <strong>2.5</strong></span>
-            </div>
-          </div>
-          <!-- single game -->
-          <div class="item float-left">
-            <div class="score">
-              <div class="team">
-                <img src="static/out_source/parcalona.png" alt="" class="team-image">
-                <div class="team-code">FCB</div>
-              </div>
-              <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
-              <div class="team">
-                <img src="static/out_source/real-madrid.png" alt="" class="team-image">
-                <div class="team-code">MAD</div>
-              </div>
-            </div>
-            <div class="bets clearfix">
-              <span class="home"><i>1</i> <strong>2.5</strong></span>
-              <span class="draw"><i>X</i> <strong>3.10</strong></span>
-              <span class="away"><i>2</i> <strong>2.5</strong></span>
+              <span class="home"><i>1</i> <strong>{{ f.odd_1 }}</strong></span>
+              <span class="draw"><i>X</i> <strong>{{ f.odd_x }}</strong></span>
+              <span class="away"><i>2</i> <strong>{{ f.odd_2 }}</strong></span>
             </div>
           </div>
         </slick>
@@ -212,111 +45,29 @@
 
       <!--single tab-->
       <div class="top-games-tab-items clearfix tab-pane" id="basketball-tab-mobile">
+        <slick ref="slick_2" :options="slickOptions">
         <!-- single game -->
-        <div class="item float-left">
+        <div class="item float-left" v-for="b in basketball">
           <div class="score">
             <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/real-madrid.png" alt=""
-                   class="team-image">
-              <div class="team-code">MAD</div>
+              <img :src="b.home_logo" alt=""
+                   class="team-image" style="width: 60px!important; height: 70px!important;">
+              <div class="team-code">{{b.home_name}}</div>
             </div>
-            <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
+            <div class="date"><i>vs.</i><span v-date-show="b.created_at"></span></div>
             <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt=""
-                   class="team-image">
-              <div class="team-code">FCB</div>
+              <img :src="b.away_logo" alt=""
+                   class="team-image" style="width: 60px!important; height: 70px!important;">
+              <div class="team-code">{{b.away_name}}</div>
             </div>
           </div>
           <div class="bets clearfix">
-            <span class="home"><i>1</i> <strong>2.5</strong></span>
-            <span class="draw"><i>X</i> <strong>3.10</strong></span>
-            <span class="away"><i>2</i> <strong>2.5</strong></span>
+            <span class="home"><i>1</i> <strong>{{ b.odd_1 }}</strong></span>
+            <span class="draw"><i>X</i> <strong>{{ b.odd_x }}</strong></span>
+            <span class="away"><i>2</i> <strong>{{ b.odd_2 }}</strong></span>
           </div>
         </div>
-        <!-- single game -->
-        <div class="item float-left">
-          <div class="score">
-            <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt=""
-                   class="team-image">
-              <div class="team-code">FCB</div>
-            </div>
-            <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
-            <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/real-madrid.png" alt=""
-                   class="team-image">
-              <div class="team-code">MAD</div>
-            </div>
-          </div>
-          <div class="bets clearfix">
-            <span class="home"><i>1</i> <strong>2.5</strong></span>
-            <span class="draw"><i>X</i> <strong>3.10</strong></span>
-            <span class="away"><i>2</i> <strong>2.5</strong></span>
-          </div>
-        </div>
-        <!-- single game -->
-        <div class="item float-left">
-          <div class="score">
-            <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt=""
-                   class="team-image">
-              <div class="team-code">FCB</div>
-            </div>
-            <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
-            <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/real-madrid.png" alt=""
-                   class="team-image">
-              <div class="team-code">MAD</div>
-            </div>
-          </div>
-          <div class="bets clearfix">
-            <span class="home"><i>1</i> <strong>2.5</strong></span>
-            <span class="draw"><i>X</i> <strong>3.10</strong></span>
-            <span class="away"><i>2</i> <strong>2.5</strong></span>
-          </div>
-        </div>
-        <!-- single game -->
-        <div class="item float-left">
-          <div class="score">
-            <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt=""
-                   class="team-image">
-              <div class="team-code">FCB</div>
-            </div>
-            <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
-            <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/real-madrid.png" alt=""
-                   class="team-image">
-              <div class="team-code">MAD</div>
-            </div>
-          </div>
-          <div class="bets clearfix">
-            <span class="home"><i>1</i> <strong>2.5</strong></span>
-            <span class="draw"><i>X</i> <strong>3.10</strong></span>
-            <span class="away"><i>2</i> <strong>2.5</strong></span>
-          </div>
-        </div>
-        <!-- single game -->
-        <div class="item float-left">
-          <div class="score">
-            <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/parcalona.png" alt=""
-                   class="team-image">
-              <div class="team-code">FCB</div>
-            </div>
-            <div class="date"><i>vs.</i><span>12 : 00 : 10</span></div>
-            <div class="team">
-              <img src="http://medyarapor.teknosoft.info/2018/test/static/out_source/real-madrid.png" alt=""
-                   class="team-image">
-              <div class="team-code">MAD</div>
-            </div>
-          </div>
-          <div class="bets clearfix">
-            <span class="home"><i>1</i> <strong>2.5</strong></span>
-            <span class="draw"><i>X</i> <strong>3.10</strong></span>
-            <span class="away"><i>2</i> <strong>2.5</strong></span>
-          </div>
-        </div>
+        </slick>
       </div>
     </div>
   </section>
@@ -347,9 +98,26 @@
               }
             },
           ]
-        }
+        },
+
+        football: null,
+        basketball: null,
+        isLoading : null,
       }
     },
+
+    created(){
+        this.isLoading = true;
+
+        this.$store.dispatch("common/getTopGames", {category: 1}).then((res) => {
+           this.football = res.data.data.data;
+        });
+
+        this.$store.dispatch("common/getTopGames", {category: 2}).then((res) => {
+            this.basketball = res.data.data.data;
+        })
+    },
+
     components: {
       slick
       //Flickity
