@@ -8,8 +8,8 @@
             </div>
             <div class="row menu">
                 <div class="col-6 col-sm-4 col-md-2 nopadding">
-                    <ul class="footer-menu" v-for="page in pages">
-                        <li>
+                    <ul class="footer-menu">
+                        <li  v-for="page in pages">
                             <router-link :to="`/pages/${page.URL}`">{{page.sayfaBaslik}}</router-link>
                         </li>
                     </ul>
