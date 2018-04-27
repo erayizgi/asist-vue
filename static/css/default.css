@@ -3407,6 +3407,21 @@ ul.sub-menu-list li a:hover {
   text-align: center;
   padding: 5px 1.429rem;
   display: block;
+  width: 110px!important;
+  height: 26px!important;
+}
+
+.follow ul li a.btn-follow {
+  background: #f91c60;
+  font-family: 'Exo 2 Semi Bold', sans-serif;
+  font-size: 1rem;
+  /*font-size: 0.8571rem;*/
+  color: #ffffff;
+  text-align: center;
+  padding: 5px 1.429rem;
+  display: block;
+  width: 110px!important;
+  height: 26px!important;
 }
 
 .follow ul li a.btn-follow:hover {

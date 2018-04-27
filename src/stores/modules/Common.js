@@ -128,12 +128,21 @@ export default {
 
     getTopGames(context, payload){
       return axios.get(apiUrl + "sliders/nav/" + payload.category);
+    },
+
+    getTippers(context, payload){
+      return axios.get(apiUrl + "users/tippers").then((res) => {
+        context.commit("setTippers", res.data.data.data);
+      })
     }
 
   },
   mutations: {
     setPages(state, data){
       Vue.set(state, "pages", data);
+    },
+    setTippers(state, data){
+      Vue.set(state, "tippers", data);
     },
     setMainSlider(state, data) {
       Vue.set(state, "mainSlider", data.data);

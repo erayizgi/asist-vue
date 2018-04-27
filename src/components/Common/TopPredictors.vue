@@ -16,7 +16,6 @@
                         <span>{{ predictor.kullaniciAdi}}</span>
                         <strong>%{{ score(predictor.yuzde)}}</strong>
                         <follow v-if="isLogged" :follower="user.kullaniciAdi" :following="predictor.kullaniciAdi"/>
-                        <a v-if="!isLogged" href="javascript:;" @click="followUser">Takip Et</a>
                         <!-- <follow :follower="user.kullaniciAdi" :t-class="'col-12 profile-buttons'" :following="usr.data.kullaniciAdi"/> -->
                     </div>
                 </div>

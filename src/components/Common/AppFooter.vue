@@ -7,9 +7,9 @@
                 </div>
             </div>
             <div class="row menu">
-                <div class="col-6 col-sm-4 col-md-2 nopadding">
-                    <ul class="footer-menu">
-                        <li  v-for="page in pages">
+                <div class="col-8 col-sm-6 col-md-6 nopadding">
+                    <ul class="row footer-menu">
+                        <li  v-for="page in pages" class="col-md-6">
                             <router-link :to="`/pages/${page.URL}`">{{page.sayfaBaslik}}</router-link>
                         </li>
                     </ul>
