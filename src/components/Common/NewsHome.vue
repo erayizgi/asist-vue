@@ -23,11 +23,11 @@
             <slick :options="subOptions" class="slides clearfix" ref="subNews">
               <div class="single-slide" v-for="n in news">
                 <div class="content" style="width:263px!important;">
-                  <a href="#">
+                  <router-link :to="`/news/${n.URL}`">
                     <img style="width: 263px!important; height:141px!important; ":src="'http://facetahmin.e-panelim.com/assets/images/'+n.haberGorsel" class="img-fluid" alt="">
                     <strong>{{n.haberBaslik}}</strong>
                     <p v-html="n.haberOzet"></p>
-                  </a>
+                  </router-link>
                 </div>
               </div>
 
@@ -42,8 +42,8 @@
               <li class="clearfix" v-for="sn in sideNews">
                 <img :src="sn.IMG" alt="" class="user-thumbnail ">
                 <div>
-                  <a href="#" class="columnist">{{sn.kullaniciAdi}}</a>
-                  <a href="#" class="article">{{sn.haberBaslik}}</a>
+                  <router-link :to="`/${sn.kullaniciAdi}`" class="columnist">{{sn.kullaniciAdi}}</router-link>
+                  <router-link :to="`/news/${sn.URL}`" class="article">{{sn.haberBaslik}}</router-link>
                 </div>
               </li>
             </ul>
