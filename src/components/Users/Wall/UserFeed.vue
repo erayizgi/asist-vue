@@ -60,7 +60,7 @@
       this.$store.dispatch("posts/getUserFeed", {username:this.userName,page: this.page}).then(res => {
         this.posts = res.data.data.data;
         this.isLoading = false;
-      })
+      });
     },
     methods:{
       loadMore(){

@@ -65,7 +65,7 @@
                     <router-link :to="`/news/${b.URL}`">
                         <img :src="'http://facetahmin.e-panelim.com/assets/images/'+b.haberGorsel" class="img-fluid" alt="">
                         <strong>{{b.haberBaslik}}</strong>
-                        <span class="d-none d-sm-block">{{b.haberBaslik}}</span>
+
                     </router-link>
                 </div>
             </div>
@@ -99,7 +99,7 @@
             });
 
             // Side News
-            this.$store.dispatch("common/getSideNews").then();
+            this.$store.dispatch("common/getSideNews", {limit: 5}).then();
 
             // Bottom News
             this.$store.dispatch("common/getNewsPage", {limit: 4, page: 3}).then((res) => {

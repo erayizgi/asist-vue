@@ -7,14 +7,31 @@
           <div class="news-slider carousel slide" id="news-slider">
             <div class="carousel-inner" >
               <slick ref="slick" v-if="!isLoading" :options="slickOptions">
-                <div class="slide carousel-item" v-for="n in videos">
-                  <img :src="n.image" class="img-fluid" style="width:100%!important;" alt="">
+                <div class="slide carousel-item" v-for="(n, index) in videos">
+                  <img :src="n.image" class="img-fluid" style="width:855px!important; height: 491px!important" alt="" data-toggle="modal" :data-target="'#show_video_'+index">
+
                 </div>
               </slick>
               <spinner v-if="isLoading"/>
             </div>
             <ol class="carousel-indicators navigation">
             </ol>
+          </div>
+
+          <div v-for="(n, index) in videos" class="modal fade" :id="'show_video_'+index" tabindex="-1" role="dialog"  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="exampleModalLongTitle">Video Önizlemesi</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="embed-responsive embed-responsive-16by9" v-html="n.text"></div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-aa-dark" data-dismiss="modal">Kapat</button>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- sub news slider -->
@@ -38,11 +55,13 @@
         <div class="col-12 col-md-4 col-lg-3 d-none d-md-block">
           <div class="columns">
             <h3 class="title">KÖŞE YAZILARI</h3>
-            <ul>
+            <ul style="margin-top: 0px!important">
               <li class="clearfix" v-for="sn in sideNews">
-                <img :src="sn.IMG" alt="" class="user-thumbnail ">
+	              <router-link :to="`/${sn.kullaniciAdi}`">
+                <img :src="sn.IMG" alt="" class="user-thumbnail" style="border: 1px solid #DDD; width: 70px!important; height: 70px!important; border-radius: 100px!important">
+	              </router-link>
                 <div>
-                  <router-link :to="`/${sn.kullaniciAdi}`" class="columnist">{{sn.kullaniciAdi}}</router-link>
+                  <router-link :to="`/${sn.kullaniciAdi}`" class="columnist">{{sn.adSoyad}}</router-link>
                   <router-link :to="`/news/${sn.URL}`" class="article">{{sn.haberBaslik}}</router-link>
                 </div>
               </li>
@@ -100,7 +119,7 @@
         })
         // this.isLoading = false;
       });
-      this.$store.dispatch("common/getSideNews").then();
+      this.$store.dispatch("common/getSideNews", {limit: 7}).then();
     },
     computed: {
       news() {

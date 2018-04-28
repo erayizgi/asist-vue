@@ -8,11 +8,11 @@
         <div class="row">
           <div class="col-12 col-sm-8 col-md-9">
             <ul class="profile-menu clearfix">
-              <li class="active">
-                <a href="javascript:void(0)">TÜM GÖNDERİLER <i class="fa fa-chevron-down"></i></a>
+              <li :class="`${(feed)? 'active':''}`">
+                <a href="javascript:void(0)" @click="showFeed">TÜM GÖNDERİLER <i class="fa fa-chevron-down"></i></a>
               </li>
-              <li class="">
-                <a href="javascript:void(0)">PAYLAŞTIĞI KUPONLAR <i class="fa fa-chevron-right"></i></a>
+              <li :class="`${(coupon)? 'active':''}`">
+                <a href="javascript:void(0)" @click="showCoupon">PAYLAŞTIĞI KUPONLAR <i class="fa fa-chevron-right"></i></a>
               </li>
             </ul>
           </div>
@@ -23,96 +23,13 @@
     <section id="home-content">
       <div class="container">
         <div class="row">
-          <user-feed :user-name="this.$route.params.user_name"/>
+          <user-feed :user-name="this.$route.params.user_name" v-if="feed"/>
+          <coupon-feed :user-name="this.$route.params.user_name" v-if="coupon"/>
           <div class="col-12 col-sm-4 col-md-3">
-            <div class="task-list">
-              <h3 class="title">YAPILACAKLAR LİSTESİ</h3>
-              <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                     aria-valuemin="0" aria-valuemax="100">25%
-                </div>
-              </div>
-              <ul>
-                <li class="clearfix">
-                  <a href="#" class="task">Lorem ipsum dolor sit amet, consectetur.</a>
-                  <span class="status done"><i class="fas fa-check"></i></span>
-                </li>
-                <li class="clearfix">
-                  <a href="#" class="task">Lorem ipsum dolor sit amet, consectetur.</a>
-                  <span class="status done"><i class="fas fa-check"></i></span>
-                </li>
-                <li class="clearfix">
-                  <a href="#" class="task">Lorem ipsum dolor sit amet, consectetur.</a>
-                  <span class="status"></span>
-                </li>
-                <li class="clearfix">
-                  <a href="#" class="task">Lorem ipsum dolor sit amet, consectetur.</a>
-                  <span class="status"></span>
-                </li>
-                <li class="clearfix">
-                  <a href="#" class="task">Lorem ipsum dolor sit amet, consectetur.</a>
-                  <span class="status"></span>
-                </li>
-                <li class="clearfix">
-                  <a href="#" class="task">Lorem ipsum dolor sit amet, consectetur.</a>
-                  <span class="status"></span>
-                </li>
-                <li class="clearfix">
-                  <a href="#" class="task">Lorem ipsum dolor sit amet, consectetur.</a>
-                  <span class="status"></span>
-                </li>
-                <li class="clearfix">
-                  <a href="#" class="task">Lorem ipsum dolor sit amet, consectetur.</a>
-                  <span class="status"></span>
-                </li>
-                <li class="clearfix">
-                  <a href="#" class="task">Lorem ipsum dolor sit amet, consectetur.</a>
-                  <span class="status"></span>
-                </li>
-              </ul>
-            </div>
-            <div class="activities">
-              <h3 class="title">ARKADAŞ AKTİVİTELERİ</h3>
-              <ul>
-                <!-- single activity -->
-                <li class="clearfix">
-                  <img src="out_source/avatar.jpg" class="float-left" alt="">
-                  <div class="float-left">
-                    <a href="javascript:void(0)">MAKALECİ</a>
-                    <strong>bir paylaşım yaptı.</strong>
-                    <span>3 saat önce</span>
-                  </div>
-                </li>
-                <!-- single activity -->
-                <li class="clearfix">
-                  <img src="out_source/avatar.jpg" class="float-left" alt="">
-                  <div class="float-left">
-                    <a href="javascript:void(0)">MAKALECİ</a>
-                    <strong>bir paylaşım yaptı.</strong>
-                    <span>3 saat önce</span>
-                  </div>
-                </li>
-                <!-- single activity -->
-                <li class="clearfix">
-                  <img src="out_source/avatar.jpg" class="float-left" alt="">
-                  <div class="float-left">
-                    <a href="javascript:void(0)">MAKALECİ</a>
-                    <strong>bir paylaşım yaptı.</strong>
-                    <span>3 saat önce</span>
-                  </div>
-                </li>
-                <!-- single activity -->
-                <li class="clearfix">
-                  <img src="out_source/avatar.jpg" class="float-left" alt="">
-                  <div class="float-left">
-                    <a href="javascript:void(0)">MAKALECİ</a>
-                    <strong>bir paylaşım yaptı.</strong>
-                    <span>3 saat önce</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="follow">
+
+	          <follow-suggestions/>
+
+            <div class="follow" style="display: none">
               <h3 class="title">TAKİP ÖNERİLERİ</h3>
               <ul>
                 <!-- single recommendation-->
@@ -159,13 +76,41 @@
 <script>
   import ProfileHead from "./Wall/ProfileHead";
   import UserFeed from "./Wall/UserFeed";
+  import CouponFeed from "./Wall/CouponFeed";
+  import FollowSuggestions from "../Common/FollowSuggestions";
 
   export default {
     components: {
+	    FollowSuggestions,
+      CouponFeed,
       UserFeed,
       ProfileHead
     },
     name: "wall",
+
+	  data(){
+    	return {
+		    feed: true,
+		    coupon: false,
+
+	    }
+	  },
+
+	  methods:{
+    	showFeed(){
+            this.coupon = false;
+            this.feed = true;
+	    },
+
+	    showCoupon(){
+    		this.feed = false;
+    		this.coupon = true;
+	    },
+
+	    showActive(){
+
+	    }
+	  }
   }
 </script>
 

@@ -19,7 +19,8 @@ import Coupon from '../components/Common/Coupon';
 import Forecast from '../components/Common/Forecast';
 import ForecastDetail from '../components/Common/ForecastDetail';
 import Pages from '../components/Common/Pages';
-import NotificationsHome from '../components/Common/NotificationsHome'
+import NotificationsHome from '../components/Common/NotificationsHome';
+import AllTippers from '../components/Common/AllTippers';
 
 Vue.use(Router);
 
@@ -51,6 +52,11 @@ export default new Router({
             name: 'NewsDetail',
             component: NewsDetail
         },
+	    {
+		    path: '/tippers',
+		    name: 'Tippers',
+		    component: AllTippers,
+	    },
         {
             path: '/forecast',
             name: 'Forecast',
@@ -116,5 +122,6 @@ export default new Router({
             name: 'Followers',
             component: Followers
         },
+
     ]
 })

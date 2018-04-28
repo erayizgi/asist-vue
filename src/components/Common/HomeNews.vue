@@ -101,11 +101,27 @@
                 </div>
                 <div class="row items">
                     <!-- single news -->
-                    <div class="col-12 col-md-4 news" v-for="video in videos">
-                        <router-link :to="`/news/${video.URL}`">
-                            <img :src="video.image" alt="" class="img-fluid">
+                    <div class="col-12 col-md-4 news" v-for="(video, index) in videos">
+                        <a href="javascript:;" data-toggle="modal" :data-target="'#show_video_'+index">
+                            <img :src="video.image" alt="" class="img-fluid" style="width: 350px!important; height: 200px!important">
                             <strong>{{video.haberBaslik}}</strong>
-                        </router-link>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div v-for="(n, index) in videos" class="modal fade" :id="'show_video_'+index" tabindex="-1" role="dialog"  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLongTitle">Video Önizlemesi</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="embed-responsive embed-responsive-16by9" v-html="n.text"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-aa-dark" data-dismiss="modal">Kapat</button>
                     </div>
                 </div>
             </div>

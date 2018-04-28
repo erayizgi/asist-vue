@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// let apiUrl = "http://asist.test/";
-let apiUrl = "https://asistanaliz-192209.appspot.com/";
+ let apiUrl = "http://asist.test/";
+//let apiUrl = "https://asistanaliz-192209.appspot.com/";
 
 export default {
   namespaced: true,
@@ -27,6 +27,9 @@ export default {
     },
     getUserFeed(context, payload){
       return axios.get(apiUrl + "posts/feed/"+payload.username+"/?offset="+payload.page*10+"&limit=10");
+    },
+    getUserCoupon(context, payload){
+      return axios.get(apiUrl + "posts/feed/"+payload.username+"/?offset="+payload.page*10+"&limit=10&where=paylasim_tipi|2");
     },
     getLikeCount(context, payload){
       return axios.get(apiUrl + "posts/"+payload+"/like_count");

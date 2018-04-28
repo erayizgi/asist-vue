@@ -2322,7 +2322,10 @@ ul.sub-menu-list li a:hover {
 }
 
 .shares .content-quotation .wrapper .coupon {
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
   background: #ffffff;
+
 }
 
 .shares .content-quotation .wrapper .coupon .header {
@@ -2334,6 +2337,7 @@ ul.sub-menu-list li a:hover {
   padding: 0.5rem 0.5rem 0.5rem 48px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  border: 1px solid #4e4254;
 }
 
 .shares .content-quotation .wrapper .coupon .header img {

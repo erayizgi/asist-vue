@@ -99,7 +99,7 @@
         </div>
       </div>
       <div class="col-4 nopadding">
-        <a href="#" class="button" @click="openRePost"><i class="fa fa-share"></i> PAYLAŞ</a>
+        <a href="javascript:;" class="button" @click="openRePost"><i class="fa fa-share"></i> PAYLAŞ</a>
       </div>
     </div>
     <div v-if="!isLoading">
@@ -276,15 +276,25 @@
         })
       },
       like() {
-        this.liked = !this.liked;
-        this.likeCount = (this.liked) ? this.likeCount + 1 : this.likeCount - 1;
-        this.$store.dispatch("posts/like", {post_id: this.postId})
-          .then(res => {
-            this.liked = res.data.data;
-          })
-          .catch(err => {
+      	if(this.isLogged) {
+	        this.liked = !this.liked;
+	        this.likeCount = (this.liked) ? this.likeCount + 1 : this.likeCount - 1;
+	        this.$store.dispatch("posts/like", {post_id: this.postId})
+		        .then(res => {
+			        this.liked = res.data.data;
+		        })
+		        .catch(err => {
 
-          })
+		        })
+        }else{
+	        this.$swal({
+		        title: "Uyarı!",
+		        text: "Giriş yapmadan beğeni yapmanız mümkün değildir.",
+		        type: "error"
+	        }).then(result => {
+		        this.close();
+	        })
+        }
       },
       showLikers() {
         this.$modal.show('asd' + this.postId);
@@ -302,22 +312,32 @@
         return this.$store.state.users.isLogged;
       },
       openRePost() {
-        this.modalIsLoading = true;
-        this.$modal.show('repost' + this.postId);
-        this.$store.dispatch("posts/getPost", this.postId).then(res => {
-          this.post = res.data.data;
-          if (this.post.paylasim_tipi === 2) {
-            this.$store.dispatch("posts/couponDetail", this.post.durum).then(res => {
-              this.coupon.games = res.data.data.data;
-              return this.$store.dispatch("posts/couponStatus", this.coupon.games[0].kupon_id)
-            }).then(res => {
-              this.coupon.status = res.data.data.data;
-              this.modalIsLoading = false;
-            });
-          } else {
-            this.modalIsLoading = false;
-          }
-        })
+      	if(this.isLogged) {
+	        this.modalIsLoading = true;
+	        this.$modal.show('repost' + this.postId);
+	        this.$store.dispatch("posts/getPost", this.postId).then(res => {
+		        this.post = res.data.data;
+		        if (this.post.paylasim_tipi === 2) {
+			        this.$store.dispatch("posts/couponDetail", this.post.durum).then(res => {
+				        this.coupon.games = res.data.data.data;
+				        return this.$store.dispatch("posts/couponStatus", this.coupon.games[0].kupon_id)
+			        }).then(res => {
+				        this.coupon.status = res.data.data.data;
+				        this.modalIsLoading = false;
+			        });
+		        } else {
+			        this.modalIsLoading = false;
+		        }
+	        })
+        }else{
+	        this.$swal({
+		        title: "Uyarı!",
+		        text: "Giriş yapmadan paylaşım yapmanız mümkün değildir.",
+		        type: "error"
+	        }).then(result => {
+		        this.close();
+	        })
+        }
       },
       close() {
         this.$modal.hide("repost" + this.postId);

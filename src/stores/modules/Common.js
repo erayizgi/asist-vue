@@ -41,8 +41,8 @@ export default {
       return axios.get(apiUrl + "news/" + payload.slug);
     },
 
-    getSideNews(context) {
-      return axios.get(apiUrl + "news/side?limit=10&order_by=-ID").then(res => {
+    getSideNews(context, payload) {
+      return axios.get(apiUrl + "news/side?limit="+payload.limit+"&order_by=-ID").then(res => {
         context.commit("setSideNews", res.data.data)
       })
     },

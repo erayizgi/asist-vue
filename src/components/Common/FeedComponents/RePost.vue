@@ -7,9 +7,9 @@
         </div>
       </div>
       <div class="content-quotation">
-        <div class="wrapper">
+        <div class="wrapper" >
           <div class="coupon">
-            <div class="header">
+            <div class="header" >
               <img :src="innerPost.IMG" alt="">
               <router-link :to="`${innerPost.kullanciAdi}`">{{innerPost.adSoyad}}</router-link>
               <em v-date-show="innerPost.created_at"></em>
@@ -18,11 +18,7 @@
               <static-content v-if="innerPost.paylasim_tipi===1" :post-content="innerPost.paylasim_id" :re-post="true"/>
               <coupon-content v-if="innerPost.paylasim_tipi===2" :coupon-id="innerPost.durum" :re-post="true"/>
             </div>
-            <div class="footer">
-              <div class="row nomargin">
-                <div class="col-12 col-md-12 col-lg-12 information"></div>
-              </div>
-            </div>
+
 
           </div>
         </div>

@@ -88,18 +88,21 @@
                 }
             },
             isUserProfile() {
-                return (this.$route.params.user_name != undefined);
-            }
+                return (this.$route.params.user_name != undefined && this.$parent.$el.classList[0] !== 'follow');
+            },
+
         },
         methods: {
             follow() {
                 this.isLoading = true;
                 if (this.$store.state.users.isLogged) {
                     this.$store.dispatch("users/follow", {kullanici_id: this.following}).then(res => {
-                        this.$store.dispatch("users/getFollowing", this.$store.state.users.user.kullaniciAdi).then(res => {
-                            this.isLoading = false;
-                        })
-                    })
+	                    this.$store.dispatch("users/getFollowing", this.$store.state.users.user.kullaniciAdi).then(res => {
+		                    this.isLoading = false;
+	                    })
+                    }).catch((err) => {
+	                    this.$swal({title: 'Hata', text: err.response.data.message, type: 'warning'})
+                    });
                 } else {
                     this.isLoading = false;
                     this.$swal({

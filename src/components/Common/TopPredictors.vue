@@ -8,15 +8,14 @@
             </div>
             <!-- single predictor -->
             <div class="col-md-7th" v-for="predictor in predictors">
-                <div class="predictor clearfix">
-                    <div class="predictor-avatar float-left">
-                        <img :src="predictor.IMG" alt="" style="width: 70px!important; height: 70px!important">
+                <div class="predictor clearfix"  @click="profile(predictor.kullaniciAdi)" style="cursor: pointer">
+
+	                <div class="predictor-avatar float-left">
+                        <img  :src="predictor.IMG" alt="" style="width: 70px!important; height: 70px!important">
                     </div>
                     <div class="predictor-detail float-left">
                         <span>{{ predictor.kullaniciAdi}}</span>
                         <strong>%{{ score(predictor.yuzde)}}</strong>
-                        <follow v-if="isLogged" :follower="user.kullaniciAdi" :following="predictor.kullaniciAdi"/>
-                        <!-- <follow :follower="user.kullaniciAdi" :t-class="'col-12 profile-buttons'" :following="usr.data.kullaniciAdi"/> -->
                     </div>
                 </div>
             </div>
@@ -25,11 +24,9 @@
 </template>
 
 <script>
-    import Follow from "../Users/Profile/Follow";
 
     export default {
         name: "top-predictors",
-        components: {Follow},
         data() {
             return {
                 predictors: null
@@ -37,10 +34,9 @@
         },
 
         methods: {
-            followUser() {
-                this.$swal({title: 'Hata', text: 'Kullanıcı Takip Etmek için Giriş Yapmalısınız!', type: 'warning'});
-            },
-
+			profile(user){
+				this.$router.push(user)
+			},
             score(score){
               return  parseFloat(score).toFixed(2);
             },
