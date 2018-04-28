@@ -2,7 +2,7 @@ import axios from 'axios';
 import Vue from 'vue';
 
 let apiUrl = "http://asist.test/";
-//let apiUrl = "https://asistanaliz-192209.appspot.com/";
+// let apiUrl = "https://asistanaliz-192209.appspot.com/";
 
 export default {
   namespaced: true,
@@ -13,6 +13,8 @@ export default {
     sideNews: [],
     videos: [],
     matches: [],
+    matchDates:[],
+    leagues:[],
     pages : [],
   },
   getters: {},
@@ -52,9 +54,34 @@ export default {
       })
     },
     getMatches(context, payload) {
-      return axios.get(apiUrl + "coupon/events").then(res => {
-        context.commit("setMatches", res);
-      })
+      if(payload === undefined){
+        return axios.get(apiUrl + "coupon/events?limit=20").then(res => {
+          context.commit("setMatches", res);
+          context.commit("setMatchDates",res.data.data.dates);
+          context.commit("setLeagues",res.data.data.leagues);
+        })
+      }else{
+        let params = "?";
+        if(payload.league){
+          params +="where=league_code|"+payload.league;
+          if(payload.type){
+            params += ",type|"+payload.type;
+          }else{
+            params += "&";
+          }
+        }else{
+          if(payload.type) {
+            params += "where=type|" + payload.type;
+          }
+        }
+        if(payload.tarih){
+          params += "between=events.start_date||"+payload.tarih;
+        }
+
+        return axios.get(apiUrl + "coupon/events"+params).then(res=>{
+          context.commit("setMatches",res);
+        })
+      }
     },
     getOddOptions(context, payload) {
       return axios.get(apiUrl + "coupon/odds/" + payload, {
@@ -170,6 +197,12 @@ export default {
       });
       console.log("index", it);
       Vue.set(state.matches[it], "odds", data.odds);
+    },
+    setMatchDates(state,data){
+      Vue.set(state,"matchDates",data);
+    },
+    setLeagues(state,data){
+      Vue.set(state,"leagues",data);
     }
   }
 }

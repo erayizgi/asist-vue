@@ -61,7 +61,8 @@
                 <div class="new-comment clearfix" v-if="isLogged && !isLoading">
                   <h3 class="title with-border">Mesaj Yaz</h3>
                   <div class="form-group">
-                    <textarea name="user_comment" class="form-control" v-model="comment"></textarea>
+                    <textarea name="user_comment" class="form-control" v-model="comment"
+                              @keydown.prevent.enter="send"></textarea>
                   </div>
                   <button class="btn btn-aa-dark float-right" @click="send">Yorum yap</button>
                 </div>
@@ -226,6 +227,9 @@
             this.comments = res.data.data.comments;
             this.isLoading = false;
           });
+        }).catch(err => {
+          this.isLoading = false;
+          this.$swal({title: 'Hata!', text: err.response.data.data.tahmin_yorumu[0], type: 'warning'});
         });
       },
 
@@ -245,6 +249,8 @@
                 this.$store.dispatch("common/getForecastDetail", {slug: this.$route.params.slug}).then((res) => {
                   this.details = res.data.data.data;
                   this.comments = res.data.data.comments;
+                  this.pageCount = Math.ceil(res.data.data.metadata.count / 10);
+
                   this.isLoading = false;
                 });
               });
@@ -265,7 +271,7 @@
           this.details = res.data.data.data;
           this.comments = res.data.data.comments;
           this.isLoading = false;
-          this.pageCount = Math.round(res.data.data.metadata.count / 10);
+          this.pageCount = Math.ceil(res.data.data.metadata.count / 10);
         });
       }
     },
@@ -291,7 +297,7 @@
         this.details = res.data.data.data;
         this.comments = res.data.data.comments;
         this.isLoading = false;
-        this.pageCount = Math.round(res.data.data.metadata.count / 10);
+        this.pageCount = Math.ceil(res.data.data.metadata.count / 10);
         $(document).ready(() => {
           $('.tab-link').on('click', function () {
             $(".tab-pane").removeClass("show");

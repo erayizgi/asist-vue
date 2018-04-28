@@ -101,7 +101,8 @@
 		                    this.isLoading = false;
 	                    })
                     }).catch((err) => {
-	                    this.$swal({title: 'Hata', text: err.response.data.message, type: 'warning'})
+	                    this.$swal({title: 'Hata', text: err.response.data.message, type: 'warning'});
+	                    this.isLoading=false;
                     });
                 } else {
                     this.isLoading = false;

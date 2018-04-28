@@ -2,7 +2,7 @@
   <div>
     <!--single match-->
     <div class="match clearfix" @click="showOptions">
-      <div class="football"><i class="fas fa-futbol"></i></div>
+      <div :class="game.type"><i :class="`${(game.type==='football')? 'fas fa-futbol':'fas fa-basketball-ball'}`"></i></div>
       <div class="code">{{game.event_oid}}</div>
       <div class="time"><i class="far fa-clock"></i><br> {{game.start_date}}</div>
       <div class="code"><span data-toggle="tooltip" :title="game.league_name">{{game.league_code}}</span></div>

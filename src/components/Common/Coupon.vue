@@ -6,26 +6,31 @@
 
           <!-- FILTER -->
           <div class="filter clearfix">
-            <select name="" class="form-control filter-date">
-              <option value="">Tarih</option>
+            <select name="" class="form-control filter-date" @change="updateMatches" v-model="selectedDate">
+              <option value="">Tümü</option>
+              <option :value="date" v-for="date in matchDates">{{date}}</option>
             </select>
-            <select name="" class="form-control filter-league">
-              <option value="">Ligler</option>
+            <select name="" class="form-control filter-league" v-model="selectedLeague" @change="updateMatches">
+              <option value="">Tümü</option>
+              <option :value="league.league_code" v-for="league in leagues">{{league.league_code}} -
+                {{league.league_name}}
+              </option>
             </select>
-            <div class="custom-checkbox">
+            <div :class="`custom-checkbox ${(football==='active')? 'active':''}`" @click="deActivateFootball">
               <span class="football"></span>
               <input type="checkbox" name="filter_football" class="d-none">
             </div>
-            <div class="custom-checkbox">
+            <div :class="`custom-checkbox ${(basketball==='active')? 'active':''}`" @click="deActivateBasketball">
               <span class="basketball"></span>
               <input type="checkbox" name="filter_football" class="d-none">
             </div>
           </div>
 
           <!-- MATCH LIST -->
-          <div class="match-list">
+          <div class="match-list" v-if="!isLoading">
             <match v-for="(game,index) in games" :game="game" :key="index"/>
           </div>
+          <spinner v-else/>
 
         </div>
         <div class="col-md-4 nopadding">
@@ -100,6 +105,7 @@
 <script>
   import Match from './Matches/Match';
   import Spinner from "./Spinner";
+  import moment from 'moment';
 
   export default {
     components: {
@@ -111,11 +117,20 @@
       return {
         misli: 3,
         comment: '',
-        isLoading: false
+        isLoading: false,
+        dates: [],
+        selectedDate: '',
+        selectedLeague: '',
+        football: 'active',
+        basketball: 'active',
       }
     },
     created() {
-      this.$store.dispatch("common/getMatches").then();
+      this.isLoading = true;
+      this.$store.dispatch("common/getMatches").then(() => {
+        this.isLoading = false;
+      });
+
     },
     computed: {
       games() {
@@ -136,8 +151,54 @@
       stats() {
         return this.$store.state.users.stats;
       },
+      matchDates() {
+        return this.$store.state.common.matchDates;
+      },
+      leagues() {
+        return this.$store.state.common.leagues;
+      }
     },
     methods: {
+      deActivateBasketball(){
+        if(this.basketball === "active"){
+          this.basketball = "deactive";
+        }else{
+          this.basketball = "active";
+        }
+        this.updateMatches();
+      },
+      deActivateFootball(){
+        if(this.football === "active"){
+          this.football = "deactive";
+        }else{
+          this.football = "active";
+        }
+        this.updateMatches();
+      },
+      updateMatches() {
+        let payload = {};
+        this.isLoading = true;
+        if (this.selectedDate) {
+          let selected = moment(this.selectedDate, "DD-MM-YYYY");
+          let nextDay = moment(selected).add(1, "d");
+          console.log(selected.format("DD-MM-YYYY") + " -- " + nextDay.format("DD-MM-YYYY"));
+          payload.tarih = selected.unix() + "|" + nextDay.unix();
+        }
+        if (this.selectedLeague) {
+          payload.league = this.selectedLeague;
+        }
+        if(this.football !== 'active' || this.basketball !== 'active'){
+          if(this.football === 'active'){
+            payload.type = "football";
+          }
+          if (this.basketball=== 'active') {
+            payload.type = "basketball";
+          }
+        }
+        this.$store.dispatch("common/getMatches", payload).then(()=>{
+          this.isLoading = false;
+        });
+      },
       removeMatch(odd_option_id) {
         this.$store.dispatch("coupon/remove", odd_option_id).then(() => {
         });
@@ -171,7 +232,7 @@
               if (balance >= this.misli) {
                 this.$swal({
                   title: "Kuponu Paylaş",
-                  text: "Kuponu paylaşmak istediğinizden emin misiniz? Bu işlem sonucunda Asist Puan bakiyenizden "+this.misli+" puan düşülecektir",
+                  text: "Kuponu paylaşmak istediğinizden emin misiniz? Bu işlem sonucunda Asist Puan bakiyenizden " + this.misli + " puan düşülecektir",
                   type: "warning",
                   showCancelButton: true,
                   confirmButtonText: "Paylaş",

@@ -18,7 +18,9 @@
             <div class="form-group">
               <label>Şifre</label>
               <input class="form-control" v-validate="'required|min:6'"
-                     :class="{'input': true, 'text-danger': errors.has('password') }" type="password" name="password" v-model="password">
+                     :class="{'input': true, 'text-danger': errors.has('password') }" type="password" name="password" v-model="password"
+                     @keydown.enter="login"
+              >
               <span v-show="errors.has('password')" class="help text-danger">{{ errors.first('password') }}</span>
             </div>
           </div>
