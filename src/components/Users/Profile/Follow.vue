@@ -54,7 +54,7 @@
                 isFollowingHover: false,
                 followingUser: null,
                 followingClass: "btn-following",
-                followingContent: '<i class="fa fa-check"></i> TAKİP EDİLİYOR',
+                followingContent: '<i class="fa fa-check"></i> TAKİPTE',
                 message: "",
             }
         },
@@ -134,7 +134,7 @@
                 this.followingClass = 'btn-unfollow hover';
             },
             mouseOu() {
-                this.followingContent = '<i class="fa fa-check"></i> TAKİP EDİLİYOR';
+                this.followingContent = '<i class="fa fa-check"></i> TAKİPTE';
                 this.followingClass = 'btn-following';
             },
             submitMessage() {

@@ -6799,8 +6799,21 @@ h6.title.with-border {
 }
 
 .btn-unfollow{
-	background-color: red;
-	color: #fff!important;
+	background: #f91c60;
+	font-family: 'Exo 2 Semi Bold', sans-serif;
+	font-size: 0.8571rem;
+	/*font-size: 0.8571rem;*/
+	color: #ffffff;
+	text-align: center;
 	padding: 5px 1.429rem;
-	font-weight: bold;
+	display: block;
+
 }
+
+/*
+.btn-unfollow:hover {
+	color: #FFFF;
+	font-size: 0.800rem;
+	background: #d03544;
+}
+*/
