@@ -29,50 +29,20 @@
 					<coupon-feed :user-name="this.$route.params.user_name" v-if="coupon && !isSingleFeed"/>
 					<single-feed :user-name="this.$route.params.user_name" v-if="isSingleFeed"/>
 					<div class="col-12 col-sm-4 col-md-3">
-
+            <div class="task-list">
+              <h3 class="title">YAPILACAKLAR LİSTESİ</h3>
+              <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+              </div>
+              <ul>
+                <li class="clearfix" v-for="mission in missions">
+                  <a href="#" class="task">{{mission.gorev_adi}}</a>
+                  <span class="status done"><i class="fas fa-check"></i></span>
+                </li>
+              </ul>
+            </div>
 						<follow-suggestions/>
 
-						<div class="follow" style="display: none">
-							<h3 class="title">TAKİP ÖNERİLERİ</h3>
-							<ul>
-								<!-- single recommendation-->
-								<li class="clearfix">
-									<img src="out_source/avatar.jpg" class="float-left" alt="">
-									<div class="float-left">
-										<strong>MAKALECİ</strong>
-										<a href="javascript:void(0)" class="btn-follow"><i class="fa fa-plus"></i>TAKİP
-											ET</a>
-									</div>
-								</li>
-								<!-- single recommendation-->
-								<li class="clearfix">
-									<img src="out_source/avatar.jpg" class="float-left" alt="">
-									<div class="float-left">
-										<strong>MAKALECİ</strong>
-										<a href="javascript:void(0)" class="btn-follow"><i class="fa fa-plus"></i>TAKİP
-											ET</a>
-									</div>
-								</li>
-								<!-- single recommendation-->
-								<li class="clearfix">
-									<img src="out_source/avatar.jpg" class="float-left" alt="">
-									<div class="float-left">
-										<strong>MAKALECİ</strong>
-										<a href="javascript:void(0)" class="btn-follow"><i class="fa fa-plus"></i>TAKİP
-											ET</a>
-									</div>
-								</li>
-								<!-- single recommendation-->
-								<li class="clearfix">
-									<img src="out_source/avatar.jpg" class="float-left" alt="">
-									<div class="float-left">
-										<strong>MAKALECİ</strong>
-										<a href="javascript:void(0)" class="btn-follow"><i class="fa fa-plus"></i>TAKİP
-											ET</a>
-									</div>
-								</li>
-							</ul>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -104,7 +74,11 @@
 
 			}
 		},
-
+    created(){
+		  this.$store.dispatch("common/getActiveDuty").then(()=>{
+		    this.$store.dispatch("common/getMissions",this.$store.state.common.activeDuty).then();
+      })
+    },
 		methods: {
 			showFeed() {
 				this.coupon = false;
@@ -125,7 +99,10 @@
 		computed:{
 			isSingleFeed(){
 				return (this.$route.params.id);
-			}
+			},
+      missions(){
+			  return this.$store.state.common.activeMissions;
+      }
 		}
 	}
 </script>

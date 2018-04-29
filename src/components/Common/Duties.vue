@@ -71,6 +71,7 @@
           this.mainDuties.push(item);
         });
       });
+		  this.$store.dispatch("common/getActiveDuty").then();
     },
     computed:{
 		  duties(){

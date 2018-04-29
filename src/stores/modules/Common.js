@@ -17,6 +17,8 @@ export default {
     leagues: [],
     pages: [],
     duties: [],
+    activeDuty: null,
+    activeMissions : []
   },
   getters: {},
   actions: {
@@ -168,6 +170,25 @@ export default {
         context.commit("setDuties", res.data.data.data);
         return res.data.data.data;
       });
+    },
+    assignDuty(context,payload){
+      return axios.post(apiUrl + "duty/"+payload+"/assign",null,{
+        headers: {Authorization: "Bearer "+localStorage.getItem("token")}
+      }).then(res=>{
+        context.commit("setActiveDuty",payload);
+      })
+    },
+    getActiveDuty(context,payload){
+      return axios.get(apiUrl + "duty/active",{
+        headers: {Authorization: "Bearer "+localStorage.getItem("token")}
+      }).then(res=>{
+        context.commit("setActiveDuty",res.data.data.grup_id);
+      });
+    },
+    getMissions(context,payload){
+      return axios.get(apiUrl + "duty/groups?where=grup_id|"+payload).then(res=>{
+        context.commit("setActiveMissions",res.data.data);
+      })
     }
   },
   mutations: {
@@ -212,6 +233,12 @@ export default {
     },
     setDuties(state,data){
       Vue.set(state,"duties",data);
+    },
+    setActiveDuty(state,data){
+      Vue.set(state,"activeDuty",data);
+    },
+    setActiveMissions(state,data){
+      Vue.set(state,"activeMissions",data.data[0].duties);
     }
   }
 }
