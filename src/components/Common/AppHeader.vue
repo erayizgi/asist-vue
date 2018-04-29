@@ -60,7 +60,7 @@
                                 <router-link to="/news"><i class="far fa-newspaper"></i> HABERLER</router-link>
                             </li>
                             <li class="nav-item">
-                                <a href="#"><i class="fas fa-book"></i> BAHİS SÖZLÜĞÜ</a>
+                                <router-link to="/duties"><i class="fas fa-book"></i> GÖREVLER</router-link>
                             </li>
                         </ul>
                     </div>
@@ -89,7 +89,7 @@
                             <router-link to="/news"><i class="far fa-newspaper"></i> HABERLER</router-link>
                         </li>
                         <li class="navbar-menu-item">
-                            <a href="#"><i class="fas fa-book"></i> BAHİS SÖZLÜĞÜ</a>
+                            <router-link to="/duties"><i class="fas fa-list"></i> GÖREVLER</router-link>
                         </li>
                         <li class="space"></li>
                         <li class="store"><a href="#"><img  src="static/images/google-play.png"></a></li>

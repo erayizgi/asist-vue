@@ -60,7 +60,7 @@
           <div class="clearfix">
             <div class="float-left">
               <strong>{{user.adSoyad}}</strong>
-              <span>{{stats.balance}} AP</span>
+              <span v-if="stats">{{stats.balance}} AP</span>
             </div>
             <div class="float-right">
               <i class="fas fa-chevron-down"></i>

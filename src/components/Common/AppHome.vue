@@ -1,5 +1,5 @@
 <template>
-  <div id="home-asist-wrapper">
+  <div id="home-asist-wrapper" v-if="!isLoading">
     <top-games v-if="!isLogged"/>
     <top-predictors v-if="!isLogged"/>
     <main-slider v-if="!isLogged"/>
@@ -18,10 +18,11 @@
         </div>
       </div>
     </section>
-    <news-home v-if="!isLogged" />
+    <news-home v-if="!isLogged"/>
     <user-bar v-if="isLogged"/>
     <logged-wrapper v-if="isLogged"/>
   </div>
+  <spinner v-else/>
 </template>
 
 <script>
@@ -32,19 +33,31 @@
   import MainSlider from "./MainSlider";
   import CouponsHome from "./CouponsHome";
   import NewsHome from "./NewsHome";
+  import Spinner from "./Spinner";
 
   export default {
     name: "app-home",
     components: {
+      Spinner,
       NewsHome,
       CouponsHome,
       MainSlider,
       LoggedWrapper,
       UserBar,
       TopPredictors,
-      TopGames},
-    computed:{
-      isLogged(){
+      TopGames
+    },
+    data(){
+      return {
+        isLoading:true
+      }
+    },
+    created() {
+      this.isLoading = false;
+    },
+    computed: {
+      isLogged() {
+
         return this.$store.state.users.isLogged;
       }
     }

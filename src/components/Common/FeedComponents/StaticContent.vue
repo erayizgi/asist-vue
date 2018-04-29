@@ -4,8 +4,8 @@
       <div class="content">
         <div v-if="!isLoading">
           <div class="wrapper bg-white">
-            <h4 v-if="post.durum">{{post.durum}}</h4>
-            <div class="image-content" v-if="post.resim">
+            <h4 v-if="post">{{post.durum}}</h4>
+            <div class="image-content" v-if="post">
               <div class="wrapper">
                 <img :src="post.resim" class="img-fluid" alt="">
               </div>
@@ -17,7 +17,7 @@
     </div>
     <div v-else>
       <div v-if="!isLoading">
-        <div class="text-content" v-if="post.durum">
+        <div class="text-content" v-if="post">
           <div class="wrapper">
             <h4>{{post.durum}}</h4>
           </div>
@@ -53,22 +53,27 @@
     data() {
       return {
         isLoading: false,
-        post: {}
+        post: null
       }
     },
     created() {
       this.isLoading = true;
-      this.$store.dispatch("posts/getPost", this.postContent).then(res => {
-        this.post = res.data.data;
+      if(this.rePost){
+        this.post = {};
+        this.post.durum = this.postContent;
+        if(this.imageContent !== ""){
+          this.post.resim = this.imageContent;
+        }
+
         this.isLoading = false;
-      });
-
-    },
-    methods: {
-      checkIfNull: function (val) {
-        return (val !== null || val !== "" || val !== undefined);
-
+      }else{
+        this.$store.dispatch("posts/getPost", this.postContent).then(res => {
+          this.post = res.data.data;
+          this.isLoading = false;
+        });
       }
+
+
     }
   }
 </script>

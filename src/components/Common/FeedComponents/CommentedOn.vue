@@ -9,13 +9,13 @@
       <div class="content-quotation">
         <div class="wrapper">
           <div class="coupon">
-            <div class="header">
+            <div class="header" v-if="post">
               <img :src="post.IMG" alt="">
               <router-link :to="`${post.kullaniciAdi}`">{{post.adSoyad}}</router-link>
               <em v-date-show="post.created_at"></em>
             </div>
             <div class="body">
-              <static-content v-if="post.paylasim_tipi===1" :post-content="post.paylasim_id"/>
+              <static-content v-if="post.paylasim_tipi===1" :post-content="post.durum" :image-content="post.resim" :re-post="true"/>
               <coupon-content v-if="post.paylasim_tipi===2" :coupon-id="post.durum" :re-post="true"/>
             </div>
           </div>

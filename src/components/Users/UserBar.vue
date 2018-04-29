@@ -25,7 +25,7 @@
                     </span>
             <span class="float-left">
                         BAŞARI
-                        <strong class="text-pink bold-condensed">%18.84</strong>
+                        <strong class="text-pink bold-condensed">% {{((stats.won/stats.coupons)*100).toFixed(2)}}</strong>
                     </span>
           </div>
           <div class="profile-stats clearfix" v-else>
