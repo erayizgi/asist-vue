@@ -5,7 +5,10 @@
 			<div class="profile-bar">
 				<img :src="post.IMG" class="img-fluid" width="75" height="75" alt="">
 				<router-link :to="`/${post.kullaniciAdi}`"><strong>{{post.adSoyad}}</strong></router-link>
-				<em v-date-show="post.islem_tarihi"></em> <em>{{humanReadableActivity(post.islem_turu)}}</em>
+
+				<router-link :to="`/${post.kullaniciAdi}/posts/${post.islem_id}`">
+					<em v-date-show="post.islem_tarihi"></em> <em>{{humanReadableActivity(post.islem_turu)}}</em>
+				</router-link>
 
 				<div class="float-right">
 					<div class="dropdown">
@@ -16,12 +19,15 @@
 						<div class="dropdown-menu dropdown-menu-right">
 
 							<!-- href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url("profil/" . $p["kullaniciAdi"] . "/" . $dt->format("dmYHis") . "-" . $p["ID"]) ?>&amp;src=sdkpreparse" -->
-							<a class="dropdown-item facebook" target="_blank"
-							   :href="`https://www.facebook.com/sharer/sharer.php?u=http://asistanaliz.com/${post.adSoyad}`"><i
-									class="fab fa-facebook"></i> Facebook'ta Paylaş</a>
-							<a class="dropdown-item twitter" target="_blank"
-							   :href="`https://twitter.com/intent/tweet?text=${post.adSoyad}&url=${post.adSoyad}`"><i
-									class="fab fa-twitter"></i> Twitter'da Paylaş</a>
+							<a class="dropdown-item facebook" target="_blank" href="#">
+								<i class="fab fa-facebook"></i> Facebook'ta Paylaş
+							</a>
+							<a class="dropdown-item twitter" target="_blank" href="#">
+								<i class="fab fa-twitter"></i> Twitter'da Paylaş
+							</a>
+							<a class="dropdown-item delete" target="_blank" href="#" v-if="user.kullaniciAdi == post.kullaniciAdi">
+								<i class="fas fa-times"></i> Paylaşımı Sil
+							</a>
 						</div>
 					</div>
 				</div>
@@ -72,6 +78,9 @@
 		computed: {
 			posts() {
 				return this.$store.state.users.feed;
+			},
+			user(){
+				return this.$store.state.users.user;
 			}
 		},
 		methods: {
