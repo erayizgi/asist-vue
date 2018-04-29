@@ -8,7 +8,7 @@
 		</div>
 		<div class="row mb-15">
 			<!-- single user -->
-			<div class="col-12 col-md-6"  v-for="tipper in tippers" >
+			<div class="col-12 col-md-6"  v-for="tipper in tippers" @click="profile(tipper.kullaniciAdi)" style="cursor: pointer">
 				<div class="user-card clearfix" style="min-height: 165px!important">
 					<div class="avatar float-left">
 						<img :src="tipper.IMG" style="width:60px;height:60px;">
@@ -17,7 +17,7 @@
 					<div class="info float-right">
 						<div class="clearfix user">
 							<strong class="float-left">{{ tipper.adSoyad}}</strong>
-							<span class="pull-right">Takip et karısını sik</span>
+							<follow v-if="isLogged" :t-class="'col-4 profile-buttons pull-right'" :follower="user.kullaniciAdi" :following="tipper.kullaniciAdi"/>
 						</div>
 						<span class="about">{{ tipper.kullaniciHakkinda }}</span>
 						<div class="stats">
@@ -35,31 +35,46 @@
 			<div class="col-12">
 				<a href="#" class="btn-load-more">DAHA FAZLA YÜKLE</a>
 			</div>
+			<spinner v-if="isLoading" />
 		</div>
 	</div>
 </template>
 
 <script>
+	import Follow from "../Users/Profile/Follow";
+	import Spinner from "./Spinner";
+
 	export default {
 		name: "AllTippers",
+		components: {Spinner, Follow},
 		data(){
 			return {
 				isLoading: false
 			}
 		},
 		methods: {
-
+			profile(user){
+				this.$router.push(user)
+			},
 		},
 
 		computed: {
-            tippers(){
-            	return this.$store.state.common.tippers;
-            }
+			user() {
+				return this.$store.state.users.user;
+			},
+			isLogged() {
+				return this.$store.state.users.isLogged;
+			},
+			tippers() {
+				return this.$store.state.common.tippers;
+			}
 		},
 
 		created() {
 			this.isLoading = true;
-			this.$store.dispatch("common/getTippers").then((res) => {});
+			this.$store.dispatch("common/getTippers").then((res) => {
+				this.isLoading = false;
+			});
 		},
 	}
 </script>

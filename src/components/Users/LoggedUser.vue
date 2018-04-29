@@ -70,9 +70,8 @@
             <li>
               <router-link to="/user/profile">Profil</router-link>
             </li>
-            <li><a href="javascript:void(0)">Kupon Yap</a></li>
-            <li><a href="javascript:void(0)">Geçmiş Kuponlar</a></li>
-            <li><a @click="logout">Çıkış</a></li>
+            <li><router-link to="/coupon">Kupon Yap</router-link></li>
+            <li><a style="cursor: pointer" @click="logout">Çıkış</a></li>
           </ul>
 
         </div>
