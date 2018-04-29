@@ -25,7 +25,7 @@
             </li>
           </ul>
           <div class="footer">
-            <a href="#">Tümü</a>
+            <router-link to="/notifications">Tümü</router-link>
           </div>
         </div>
       </div>

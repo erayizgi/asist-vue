@@ -4,10 +4,11 @@
     <ul>
       <!-- single recommendation-->
       <li class="clearfix" v-for="tipper in tippers">
-        <img :src="tipper.IMG" class="float-left" alt="">
+        <img :src="tipper.IMG" class="float-left" alt="" @click="profile(tipper.kullaniciAdi)" style="cursor:pointer;">
         <div class="float-left">
-          <strong>{{ tipper.adSoyad }}</strong>
-          <follow v-if="isLogged" :t-class="'col-12 profile-buttons '" :follower="user.kullaniciAdi" :following="tipper.kullaniciAdi"/>
+          <strong  @click="profile(tipper.kullaniciAdi)" style="cursor:pointer;">{{ tipper.adSoyad }}</strong>
+          <follow v-if="isLogged" :t-class="'col-12 profile-buttons '" :follower="user.kullaniciAdi"
+                  :following="tipper.kullaniciAdi"/>
         </div>
       </li>
     </ul>
@@ -34,8 +35,11 @@
       });
 
     },
-
-
+    methods: {
+      profile(user) {
+        this.$router.push(user)
+      },
+    },
     computed: {
       user() {
         return this.$store.state.users.user;
