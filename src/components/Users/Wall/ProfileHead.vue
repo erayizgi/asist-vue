@@ -41,15 +41,15 @@
 		data() {
 			return {
 				user: null,
-        isLoading: true
+				isLoading: true
 			}
 		},
 		created() {
-		  this.isLoading = true;
+			this.isLoading = true;
 			this.$store.dispatch("users/getUser", this.userName).then(res => {
 				this.user = res.data.data;
-        this.isLoading = false;
-      })
+				this.isLoading = false;
+			})
 		}
 	}
 </script>

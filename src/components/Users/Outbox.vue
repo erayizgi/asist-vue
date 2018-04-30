@@ -24,10 +24,10 @@
             <!--single message -->
             <router-link :to="`/message/inbox/${msg.conversation.conversation_id}`" class="message clearfix" v-for="msg in messages">
               <div class="avatar float-left">
-                <img :src="msg.conversation.sender.IMG" alt="">
+                <img :src="msg.conversation.receiver.IMG" alt="">
               </div>
               <div class="info float-left">
-                <span class="user subject">{{msg.conversation.sender.adSoyad}}</span>
+                <span class="user subject">{{msg.conversation.receiver.adSoyad}}</span>
                 <span class="content">{{msg.message[0].content}}</span>
                 <span class="time" v-date-show="msg.conversation.updated_at"></span>
               </div>

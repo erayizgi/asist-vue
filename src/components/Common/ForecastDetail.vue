@@ -25,13 +25,13 @@
             </div>
 
             <div class="tab-links clearfix mb-15" role="tablist">
-              <a data-target="customtab1" href="javascript:;" class="tab-link ">Tahminci Yorumu</a>
-              <a data-target="customtab2 " href="javascript:;" class="tab-link active">Anket</a>
+              <a data-target="customtab1" href="javascript:;" class="tab-link active">Tahminci Yorumu</a>
+              <a data-target="customtab2 " href="javascript:;" class="tab-link">Anket</a>
             </div>
             <div class="tabs" role="tabpanel">
 
               <!-- COMMENTS TAB -->
-              <div class="tab-pane" id="customtab1">
+              <div class="tab-pane show" id="customtab1">
 
                 <ul class="pagination">
                   <!--<li class="page-item"><a class="page-link" href="#">Önceki</a></li>-->
@@ -70,7 +70,7 @@
               </div>
 
               <!-- POLL TAB -->
-              <div class="tab-pane show" id="customtab2">
+              <div class="tab-pane" id="customtab2">
                 <div class="alert alert-danger" v-if="error">
                   <h5>{{error}}</h5>
                 </div>
@@ -80,12 +80,6 @@
                   <div v-if="isLogged && !exists">
                     <h3 class="poll-question with-border">Maç sonucu ne olur?</h3>
 
-                    <div v-if="!isLogged">
-                      <div class="alert alert-warning">
-                        <strong>Giriş Yap!</strong> Karşılaşmaya ait ankete yanıt vermek için
-                        lütfen giriş yapınız.
-                      </div>
-                    </div>
 
                     <div>
                       <div class="custom-control custom-radio">

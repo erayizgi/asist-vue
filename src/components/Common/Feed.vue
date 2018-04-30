@@ -19,13 +19,15 @@
 						<div class="dropdown-menu dropdown-menu-right">
 
 							<!-- href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url("profil/" . $p["kullaniciAdi"] . "/" . $dt->format("dmYHis") . "-" . $p["ID"]) ?>&amp;src=sdkpreparse" -->
-							<router-link class="dropdown-item facebook" target="_blank" :to="`https://www.facebook.com/sharer/sharer.php?u=${url}/${post.kullaniciAdi}/posts/${post.islem_id}`">
+							<router-link class="dropdown-item facebook" target="_blank"
+							             :to="`https://www.facebook.com/sharer/sharer.php?u=${url}/${post.kullaniciAdi}/posts/${post.islem_id}`">
 								<i class="fab fa-facebook"></i> Facebook'ta Paylaş
 							</router-link>
 							<a class="dropdown-item twitter" target="_blank" href="#">
 								<i class="fab fa-twitter"></i> Twitter'da Paylaş
 							</a>
-							<a class="dropdown-item delete" target="_blank" href="#" v-if="user.kullaniciAdi == post.kullaniciAdi">
+							<a class="dropdown-item delete" target="_blank" href="#"
+							   v-if="user.kullaniciAdi == post.kullaniciAdi" @click="deletePost(post.post_id)">
 								<i class="fas fa-times"></i> Paylaşımı Sil
 							</a>
 						</div>
@@ -79,7 +81,7 @@
 			posts() {
 				return this.$store.state.users.feed;
 			},
-			user(){
+			user() {
 				return this.$store.state.users.user;
 			}
 		},
@@ -102,6 +104,33 @@
 				} else if (type === "comment") {
 					return "bir gönderiye yorum yaptı"
 				}
+			},
+			deletePost(post) {
+				this.isLoading = true;
+				this.$swal({
+					title: "Paylaşımı Sil",
+					text: "Paylaşımı silmek istediğinize emin misiniz? Bu işlemi geri almanız mümkün olmayacaktır.",
+					type: "warning",
+					showCancelButton: true,
+					confirmButtonText: "Paylaşımı Sil",
+					cancelButtonText: "İptal"
+				}).then(result => {
+					if (result.value) {
+						this.$store.dispatch("posts/deletePost", post).then(res => {
+							this.$store.dispatch("posts/getUserFeed", {
+								username: this.userName,
+								page: this.page
+							}).then(res => {
+								this.posts = res.data.data.data;
+								this.isLoading = false;
+							});
+						}).catch(err => {
+							this.isLoading = false;
+							this.$swal({title: 'Hata!', text: 'ata', type: 'warning'});
+						});
+					}
+				})
+
 			}
 		}
 	}

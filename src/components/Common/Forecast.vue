@@ -6,7 +6,7 @@
 				<!-- MATCH LIST -->
 				<div class="col-12 col-sm-8 col-md-9">
 
-					<h1 class="page-title with-border">YORUM YAPILAN MAÇLAR</h1>
+					<h1 class="page-title with-border">MAÇLAR</h1>
 
 					<table class="table table-striped">
 						<thead>

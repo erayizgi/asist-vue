@@ -51,7 +51,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/forecast"> href="#"><i class="fas fa-bullseye"></i> TAHMİN</router-link>
+                                <router-link to="/forecast"><i class="fas fa-bullseye"></i> TAHMİN</router-link>
                             </li>
                             <li class="nav-item">
                                 <a href="#"><i class="far fa-chart-bar"></i> İSTATİSTİKLER</a>

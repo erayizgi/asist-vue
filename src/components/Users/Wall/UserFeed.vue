@@ -101,16 +101,27 @@
 			},
 			deletePost(post) {
 				this.isLoading = true;
+				this.$swal({
+					title: "Paylaşımı Sil",
+					text: "Paylaşımı silmek istediğinize emin misiniz? Bu işlemi geri almanız mümkün olmayacaktır.",
+					type: "warning",
+					showCancelButton: true,
+					confirmButtonText: "Paylaşımı Sil",
+					cancelButtonText: "İptal"
+				}).then(result => {
+					if (result.value) {
+						this.$store.dispatch("posts/deletePost", post).then(res => {
+							this.$store.dispatch("posts/getUserFeed", {username: this.userName, page: this.page}).then(res => {
+								this.posts = res.data.data.data;
+								this.isLoading = false;
+							});
+						}).catch(err => {
+							this.isLoading = false;
+							this.$swal({title: 'Hata!', text: 'ata', type: 'warning'});
+						});
+					}
+				})
 
-				this.$store.dispatch("posts/deletePost", post).then(res => {
-					this.$store.dispatch("posts/getUserFeed", {username: this.userName, page: this.page}).then(res => {
-						this.posts = res.data.data.data;
-						this.isLoading = false;
-					});
-				}).catch(err => {
-					this.isLoading = false;
-					this.$swal({title: 'Hata!', text: 'ata', type: 'warning'});
-				});
 			}
 		}
 	}
