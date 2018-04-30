@@ -187,7 +187,7 @@
             }).catch(err => {
               console.log(err.response);
               this.error.hasAny = true;
-              this.error.message = err.response.data.data.errors.exception;
+              this.error.message = err.response.data.data;
               this.error.type = "alert alert-danger";
             });
           }
