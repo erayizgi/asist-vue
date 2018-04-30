@@ -8,7 +8,11 @@
               <span class="task-point">{{calculateSum(duty.duties)}} AP</span>
               <span>{{duty.duties.length}} Görev</span>
               <span>{{duty.katilimci}} Katılımcı</span>
-              <a href="javascript:void(0)" class="btn-join" @click="assignDuty">KATIL</a>
+              <a href="javascript:void(0)" class="btn-join" @click="assignDuty"
+                 v-if="!activeDuty">KATIL</a>
+              <a href="javascript:void(0)" class="btn-join bg-success" disabled v-if="activeDuty === duty.grup_id">
+                <i class="fa fa-check"></i> KATILDINIZ
+              </a>
               <span class="warning"><i class="fas fa-exclamation-triangle"></i> Katıl butonuna basarak kuralları kabul etmiş sayılırsınız.</span>
             </div>
           </div>
@@ -46,32 +50,35 @@
 </template>
 
 <script>
-	export default {
-		name: "single-duty",
-    data(){
-		  return {
-		    duty:null,
+  export default {
+    name: "single-duty",
+    data() {
+      return {
+        duty: null,
       }
     },
-    created(){
-		  if(this.$store.state.common.duties.length >0 ){
-		    this.$store.state.common.duties.forEach(item=>{
-		      console.log(this.$route.params.duty_id);
-		      if(item.grup_id === parseInt(this.$route.params.duty_id)) {
-		        this.duty = item;
+    created() {
+      if (this.$store.state.common.duties.length > 0) {
+        this.$store.state.common.duties.forEach(item => {
+          console.log(this.$route.params.duty_id);
+          if (item.grup_id === parseInt(this.$route.params.duty_id)) {
+            this.duty = item;
           }
         })
-      }else{
-        this.$store.dispatch("common/getDuties").then(res=>{
+      } else {
+        this.$store.dispatch("common/getDuties").then(res => {
         });
       }
     },
-    computed:{
-      duties(){
+    computed: {
+      duties() {
         return this.$store.state.common.duties;
+      },
+      activeDuty() {
+        return this.$store.state.common.activeDuty;
       }
     },
-    mounted(){
+    mounted() {
       $(document).on('click', '.tab-link', function () {
 
         let _this = $(this);
@@ -88,25 +95,31 @@
         return false;
       });
     },
-    methods:{
-      calculateSum(duty){
+    methods: {
+      calculateSum(duty) {
         let sum = 0.0;
-        duty.forEach(item=>{
+        duty.forEach(item => {
           sum = sum + parseInt(item.odul);
         });
         return sum;
       },
-      assignDuty(){
-        if(!this.$store.state.common.activeDuty){
-          this.$store.dispatch("common/assignDuty",this.duty.grup_id).catch(err => {
-            this.$swal({type:"error",title:"Hata",text:err.response.data.message})
+      assignDuty() {
+        if (!this.$store.state.common.activeDuty) {
+          this.$store.dispatch("common/assignDuty", this.duty.grup_id).then(() => {
+            this.$swal({type: "success", title: "Başarılı", text: "Görev Grubuna Başarıyla Katıldınız"})
+          }).catch(err => {
+            this.$swal({type: "error", title: "Hata", text: err.response.data.message})
           })
-        }else{
-          this.$swal({type:"error",title:"Hata",text:"Aktif katılımınızın bulunduğu bir görev grubu bulunmaktadır."})
+        } else {
+          this.$swal({
+            type: "error",
+            title: "Hata",
+            text: "Aktif katılımınızın bulunduğu bir görev grubu bulunmaktadır."
+          })
         }
       }
     }
-	}
+  }
 </script>
 
 <style scoped>

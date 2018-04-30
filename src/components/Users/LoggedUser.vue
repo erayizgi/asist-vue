@@ -68,7 +68,10 @@
           </div>
           <ul class="user-menu-list" id="login-after-menu" v-show="userMenuActive">
             <li>
-              <router-link to="/user/profile">Profil</router-link>
+              <router-link :to="`/${user.kullaniciAdi}`">Duvarım</router-link>
+            </li>
+            <li>
+              <router-link to="/user/profile">Profil Düzenle</router-link>
             </li>
             <li><router-link to="/coupon">Kupon Yap</router-link></li>
             <li><a style="cursor: pointer" @click="logout">Çıkış</a></li>

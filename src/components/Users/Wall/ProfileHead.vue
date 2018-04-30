@@ -23,7 +23,7 @@
 						</div>
 					</div>
 				</div>
-				<follow :follower="this.$store.state.users.user.kullaniciAdi" :following="user.data.kullaniciAdi"/>
+				<follow v-if="this.$store.state.users.isLogged" :follower="this.$store.state.users.user.kullaniciAdi" :following="user.data.kullaniciAdi"/>
 			</div>
 		</div>
 	</section>

@@ -6,7 +6,11 @@
       <div class="code">{{game.event_oid}}</div>
       <div class="time"><i class="far fa-clock"></i><br> {{game.start_date}}</div>
       <div class="code"><span data-toggle="tooltip" :title="game.league_name">{{game.league_code}}</span></div>
-      <div class="teams">{{game.home}}<span>vs</span> {{game.away}}</div>
+      <div class="teams">
+        <div style="display:table-cell;width:49%;">{{game.home}}</div>
+        <span style="display:table-cell;width:2%;">vs</span>
+        <div style="display:table-cell;width:49%;">{{game.away}}</div>
+      </div>
       <div class="btn-add" v-if="!hasClicked"><span class="badge badge-info">MBS: {{game.mbc}}</span></div>
       <div class="btn-remove" v-else><span class="badge badge-info">MBS: {{game.mbc}}</span></div>
     </div>

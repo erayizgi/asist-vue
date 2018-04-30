@@ -23,7 +23,8 @@
             this.$store.dispatch("users/getMyStatistics").then(()=>{
               this.$store.state.users.isLogged = true;
               this.$store.dispatch("users/getFollowing", this.$store.state.users.user.kullaniciAdi).then(res => {
-
+                console.log("app den params",this.$route.params);
+                this.$router.push(this.$route);
               });
             })
           });
@@ -35,6 +36,7 @@
               this.$store.dispatch("users/getMyStatistics").then(()=>{
                 this.$store.state.users.isLogged = true;
                 this.$store.dispatch("users/getFollowing", this.$store.state.users.user.kullaniciAdi).then(res => {
+                  // this.$router.push(this.$route.fullPath);
 
                 });
               })

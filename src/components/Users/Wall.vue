@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<profile-head :user-name="this.$route.params.user_name"/>
+	<div v-if="!isLoading">
+		<profile-head :user-name="user.kullaniciAdi"/>
 		<!-- send user message modal -->
 
 		<section id="user-profile-menu-bar">
@@ -25,11 +25,11 @@
 		<section id="home-content">
 			<div class="container">
 				<div class="row">
-					<user-feed :user-name="this.$route.params.user_name" v-if="feed && !isSingleFeed"/>
-					<coupon-feed :user-name="this.$route.params.user_name" v-if="coupon && !isSingleFeed"/>
-					<single-feed :user-name="this.$route.params.user_name" v-if="isSingleFeed"/>
-					<div class="col-12 col-sm-4 col-md-3">
-            <div class="task-list">
+					<user-feed :user-name="user.kullaniciAdi" v-if="feed && !isSingleFeed"/>
+					<coupon-feed :user-name="user.kullaniciAdi" v-if="coupon && !isSingleFeed"/>
+					<single-feed :user-name="user.kullaniciAdi" v-if="isSingleFeed"/>
+					<div class="col-12 col-sm-4 col-md-3" >
+            <div class="task-list" v-if="amI">
               <h3 class="title">YAPILACAKLAR LİSTESİ</h3>
               <div class="progress">
                 <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
@@ -66,12 +66,15 @@
 			ProfileHead
 		},
 		name: "wall",
-
+    props:[
+      "user_name"
+    ],
 		data() {
 			return {
 				feed: true,
 				coupon: false,
-
+        isLoading:true,
+        user:null
 			}
 		},
     created(){
@@ -80,6 +83,11 @@
           this.$store.dispatch("common/getMissions",this.$store.state.common.activeDuty).then();
         })
       }
+      this.$store.dispatch("users/getUser",this.$route.params.user_name).then((res)=>{
+        this.user = res.data.data.data;
+        this.isLoading = false;
+
+      });
     },
 		methods: {
 			showFeed() {
@@ -92,7 +100,6 @@
 				this.coupon = true;
 			},
 
-
 			showActive() {
 
 			}
@@ -104,8 +111,11 @@
 			},
       missions(){
 			  return this.$store.state.common.activeMissions;
-      }
-		}
+      },
+      amI(){
+        return false;
+      },
+		},
 	}
 </script>
 

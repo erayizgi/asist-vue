@@ -131,8 +131,8 @@
 								</strong>
 								{{comment.yorum}}
 								<div>
-									<a href="javascript:;" class="btn-reply" @click="showReply()">YANITLA</a>
-									<textarea v-if="reply" name="comment" class="form-control" :key="index"
+									<a href="javascript:;" class="btn-reply" @click="showReply(index)">YANITLA</a>
+									<textarea v-if="reply===index" name="comment" class="form-control" :key="index"
 									          v-model="reply_comment"
 									          @keydown.enter.prevent="replyComment(comment.yorum_id)"
 									          :disabled="commentLoading">
@@ -253,8 +253,8 @@
 			}
 		},
 		methods: {
-			showReply() {
-				return this.reply = true;
+			showReply(index) {
+				return this.reply = index;
 			},
 			addComment() {
 				let data = {
@@ -292,13 +292,14 @@
 				if (this.isLogged) {
 					this.$store.dispatch("comments/comment", data)
 						.then(res => {
-							this.$store.dispatch("comments/getCommentsByPostId", {
-								post: this.postId,
-								limit: 1
-							}).then(res => {
-								this.loadAllComments();
-							});
-						});
+							// this.$store.dispatch("comments/getCommentsByPostId", {
+							// 	post: this.postId,
+							// 	limit: 1
+							// }).then(res => {
+							// });
+              this.reLoadAllComments();
+
+            });
 				} else {
 					this.$swal({
 						title: "Uyarı!",
@@ -312,6 +313,7 @@
 			},
 			loadAllComments() {
 				this.commentLoading = true;
+				console.log("loadAllComment");
 				this.$store.dispatch("comments/getCommentsByPostId", {
 					post: this.postId,
 					limit: 10,
@@ -329,6 +331,25 @@
 					}
 					this.commentLoading = false;
 					this.page++;
+
+				});
+			},
+      reLoadAllComments() {
+				this.commentLoading = true;
+				console.log("loadAllComment");
+				this.$store.dispatch("comments/getCommentsByPostId", {
+					post: this.postId,
+					limit: 10,
+					offset: (this.page) * 10
+				}).then(res => {
+          this.comments = res.data.data.data;
+					if (res.data.data.metadata.count <= (this.page * 10)) {
+						this.showMore = false;
+					}
+					this.commentLoading = false;
+					this.page++;
+          this.reply_comment ="";
+          this.reply = null;
 
 				});
 			},

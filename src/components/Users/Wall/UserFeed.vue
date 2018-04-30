@@ -1,7 +1,7 @@
 <template>
 	<div class="col-12 col-md-9">
 		<!-- login first -->
-		<div class="shares" v-for="post in posts">
+		<div class="shares"  v-if="!isLoading" v-for="post in posts">
 			<div class="profile-bar">
 				<img :src="post.IMG" class="img-fluid" width="75" height="75" alt="">
 				<router-link :to="`/${post.kullaniciAdi}`"><strong>{{post.adSoyad}}</strong></router-link>
@@ -22,7 +22,7 @@
 								<i class="fab fa-twitter"></i> Twitter'da Paylaş
 							</a>
 							<a class="dropdown-item delete" target="_blank" href="javascript:;" @click="deletePost(post.post_id)"
-							   v-if="user.kullaniciAdi == post.kullaniciAdi">
+							   v-if=" user && user.kullaniciAdi == post.kullaniciAdi">
 								<i class="fas fa-times"></i> Paylaşımı Sil
 							</a>
 						</div>
@@ -74,7 +74,11 @@
 		},
 		computed: {
 			user() {
-				return this.$store.state.users.user;
+			  if(this.$store.state.users.isLogged){
+          return this.$store.state.users.user;
+        }else{
+			    return false;
+        }
 			}
 		},
 		methods: {

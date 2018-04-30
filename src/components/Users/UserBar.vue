@@ -38,18 +38,18 @@
           </div>
           <span class="text">Fikirlerini ya da Fotoğraflarını Paylaş</span>
           <textarea name="comment" class="form-control" v-model="postText"
-                    :placeholder="'Ne düşünüyorsun,'+user.adSoyad+'?'"></textarea>
+                    :placeholder="'Ne düşünüyorsun,'+user.adSoyad+'?'" v-if="!pResimLoading"></textarea>
           <div class="col-md-2 float-left" v-if="postResim">
             <img :src="postResim" alt="" style="width:100%;">
           </div>
           <div class="float-right">
             <label class="custom-file img-btn" style="padding:5px!important;">
               <i class="fas fa-image"></i>
-              <input type="file" id="file" class="custom-file-input" style="display: none;" :disabled="pResimLoading"
+              <input type="file" id="file" class="custom-file-input" style="display: none;" v-if="!pResimLoading"
                      v-on:change="upload($event.target.files,'postResim')">
               <div class="custom-file-control"></div>
             </label>
-            <button class="share-btn" @click="createPost">PAYLAŞ</button>
+            <button class="share-btn" @click="createPost" v-if="!pResimLoading">PAYLAŞ</button>
           </div>
         </div>
       </div>
@@ -69,6 +69,7 @@
         statsLoading: false,
         postText: '',
         postResim: '',
+        isLoading:false,
         error: {
           hasAny: false,
           message: '',
@@ -135,6 +136,8 @@
             this.error.hasAny = true;
             this.error.message = "Durum başarıyla oluşturuldu";
             this.error.type = "alert alert-success";
+            this.$store.dispatch("users/clearFeed").then();
+            this.$store.dispatch("users/feed").then();
           });
         }
       },
@@ -154,6 +157,12 @@
             this.postResim = res.data.secure_url;
             this.pResimLoading = false;
           }
+        }).catch(err => {
+          this.$swal({
+            title:"Hata",
+            type: "error",
+            text: err.response.data.message
+          })
         })
       }
 

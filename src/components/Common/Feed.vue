@@ -65,7 +65,7 @@
 		data() {
 			return {
 				isLoading: false,
-				page: 1,
+				page: 0,
 				url: "http://asistanaliz.com/",
 			}
 		},

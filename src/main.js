@@ -10,7 +10,11 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import VeeValidate from 'vee-validate';
 import VModal from 'vue-js-modal'
 
+const VueInputMask = require('vue-inputmask').default;
+
 Vue.use(VModal);
+Vue.use(VueInputMask);
+
 const config = {
   locale: 'tr',
   dictionary: {

@@ -156,7 +156,10 @@
 							this.error.message = "E-mail adresi yada parolanız yanlış";
 							this.error.type = "alert alert-danger";
 						});
-					}
+					}else{
+					  this.isLoading = false;
+
+          }
 				});
 
 			}

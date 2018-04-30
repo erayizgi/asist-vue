@@ -36,11 +36,14 @@
         <div class="col-md-4 nopadding">
           <div class="coupon" id="user-coupon">
             <div style="background:#36243f;padding:15px;">
-              <img :src="user.IMG" alt="" class="avatar"
-                   style="width:80px;height:80px;border-radius:100%;float:left;margin-right:15px;">
-              <h4 class="text-white pull-left mt-2">{{user.adSoyad}}</h4>
-              <h5 class="text-white" style="font-weight: 900;width:70%!important;" v-if="stats">{{stats.balance}}
-                AP</h5>
+              <h4 class="text-white mt-2">
+                <img :src="user.IMG" alt="" class="avatar"
+                     style="width:80px;height:80px;border-radius:100%;float:left;margin-right:15px;">
+                {{user.adSoyad}}
+                <h5 class="text-white" style="font-weight: 900;width:70%!important;" v-if="stats">{{stats.balance}}
+                  AP</h5>
+              </h4>
+
             </div>
             <div class="coupon-title">
               <div class="clearfix"></div>
@@ -66,7 +69,11 @@
                       <div class="code">{{matches.event.event_oid}} {{matches.event.league_code}}</div>
                       <div class="time">{{matches.event.start_date}}</div>
                     </div>
-                    <strong class="teams">{{matches.event.home}} <span>VS</span> {{matches.event.away}}</strong>
+                    <strong class="teams">
+                      {{matches.event.home}} <span>VS</span> {{matches.event.away}}
+                      <br>
+                      <span class="badge badge-info text-white">MBS : {{matches.event.mbc}}</span>
+                    </strong>
                     <div class="bet clearfix">
                       <span>{{matches.odd_type}}: {{matches.odd_option}}</span>
                       <em>{{matches.odd}}</em>
@@ -159,18 +166,18 @@
       }
     },
     methods: {
-      deActivateBasketball(){
-        if(this.basketball === "active"){
+      deActivateBasketball() {
+        if (this.basketball === "active") {
           this.basketball = "deactive";
-        }else{
+        } else {
           this.basketball = "active";
         }
         this.updateMatches();
       },
-      deActivateFootball(){
-        if(this.football === "active"){
+      deActivateFootball() {
+        if (this.football === "active") {
           this.football = "deactive";
-        }else{
+        } else {
           this.football = "active";
         }
         this.updateMatches();
@@ -187,15 +194,15 @@
         if (this.selectedLeague) {
           payload.league = this.selectedLeague;
         }
-        if(this.football !== 'active' || this.basketball !== 'active'){
-          if(this.football === 'active'){
+        if (this.football !== 'active' || this.basketball !== 'active') {
+          if (this.football === 'active') {
             payload.type = "football";
           }
-          if (this.basketball=== 'active') {
+          if (this.basketball === 'active') {
             payload.type = "basketball";
           }
         }
-        this.$store.dispatch("common/getMatches", payload).then(()=>{
+        this.$store.dispatch("common/getMatches", payload).then(() => {
           this.isLoading = false;
         });
       },

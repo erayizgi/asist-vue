@@ -81,16 +81,21 @@
       })
     },
     computed:{
-      user(){
-        return this.$store.state.users.user;
+      user() {
+        if(this.$store.state.users.isLogged){
+          return this.$store.state.users.user;
+        }else{
+          return false;
+        }
       }
     },
     methods:{
       loadMore(){
-        this.page++;
         this.isLoading = true;
         this.$store.dispatch("users/getFollowers", {username:this.$route.params.user_name,page:this.page}).then(res => {
           this.count = 0;
+          this.page++;
+
           let length = res.data.data.data.length;
 
           res.data.data.data.forEach((item,key) => {

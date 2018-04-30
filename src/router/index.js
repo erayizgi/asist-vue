@@ -24,12 +24,13 @@ import NotificationsHome from '../components/Common/NotificationsHome';
 import AllTippers from '../components/Common/AllTippers';
 import Duties from '../components/Common/Duties';
 import SingleDuty from '../components/Common/SingleDuty';
+import NotFoundComponent from '../components/Common/NotFoundComponent';
 
 
 Vue.use(Router);
 
 export default new Router({
-	// mode: 'history',
+	mode: 'history',
 	routes: [
 		{
 			path: '/',
@@ -146,6 +147,7 @@ export default new Router({
 			name: 'Followers',
 			component: Followers
 		},
+    { path: '*', component: Wall }
 
 	]
 })

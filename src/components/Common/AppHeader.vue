@@ -3,7 +3,7 @@
         <div class="top-menu container-fluid nopadding">
             <div class="row nomargin">
                 <div class="logo col-12 col-md-4 nopadding">
-                    <router-link to="/"><img src="static/images/logo.png" alt=""></router-link>
+                    <router-link to="/"><img src="/static/images/logo.png" alt=""></router-link>
                 </div>
                 <div class="links col-12 col-md-8 nopadding" v-if="!isLogged">
                     <div class="menu">

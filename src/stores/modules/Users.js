@@ -93,6 +93,9 @@ export default {
 					context.commit("setFeed", response.data.data);
 				})
 		},
+    clearFeed(context,payload){
+		  context.commit("clearFeed",payload);
+    },
 		getUser(context, payload) {
 			return axios.get(apiUrl + "users/" + payload);
 		},
@@ -183,6 +186,7 @@ export default {
 			state.user = null;
 			state.isLogged = false;
 			localStorage.removeItem("token");
+			window.location.reload();
 
 		},
 		setUserAvatar(state, url) {
@@ -203,6 +207,9 @@ export default {
 			});
 			//state.feed =feed;
 		},
+    clearFeed(state,data){
+		  Vue.set(state,"feed",[]);
+    },
 		setFollowing(state, data) {
 			Vue.set(state, "following", data);
 		},

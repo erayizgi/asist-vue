@@ -2,7 +2,7 @@
 
 	<div class="col-12 col-md-9">
 		<!-- login first -->
-		<div class="shares" v-for="post in posts">
+		<div class="shares" v-for="post in posts" v-if="!isLoading">
 			<div class="profile-bar">
 				<img :src="post.IMG" class="img-fluid" width="75" height="75" alt="">
 				<router-link :to="`/${post.kullaniciAdi}`"><strong>{{post.adSoyad}}</strong></router-link>
@@ -66,9 +66,13 @@
 			});
 		},
 		computed: {
-			user() {
-				return this.$store.state.users.user;
-			}
+      user() {
+        if(this.$store.state.users.isLogged){
+          return this.$store.state.users.user;
+        }else{
+          return false;
+        }
+      }
 		},
 		methods: {
 			humanReadableActivity(type) {

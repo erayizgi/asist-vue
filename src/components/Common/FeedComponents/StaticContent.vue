@@ -5,7 +5,7 @@
         <div v-if="!isLoading">
           <div class="wrapper bg-white">
             <h5 v-if="post">{{post.durum}}</h5>
-            <div class="image-content" v-if="post">
+            <div class="image-content" v-if="post.resim">
               <div class="wrapper">
                 <img :src="post.resim" class="img-fluid" alt="">
               </div>

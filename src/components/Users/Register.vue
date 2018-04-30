@@ -75,7 +75,8 @@
                     <label>Cep Telefonu Numaranız</label>
                     <input id="phone" class="form-control" type="text" name="Telefon Numarası" v-model="user.kullaniciTelefon"
                            v-validate="'required'"
-                           :class="{'input':true, 'text-danger':errors.has('Telefon Numarası')}">
+                           :class="{'input':true, 'text-danger':errors.has('Telefon Numarası')}"
+                           v-mask="{mask: '(999) 999-9999', greedy: true}" >
                     <span v-show="errors.has('Telefon Numarası')" class="help text-danger">{{ errors.first('Telefon Numarası') }}</span>
                   </div>
                 </div>
@@ -194,13 +195,6 @@
         })
       }
     },
-
-    mounted(){
-	    $(function () {
-		   $("#phone").mask("(999) 999-9999");
-	    });
-
-  }
 
   }
 </script>
