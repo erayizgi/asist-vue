@@ -73,7 +73,7 @@
                 <div class="col-12 col-md-12">
                   <div class="form-group">
                     <label>Cep Telefonu Numaranız</label>
-                    <input class="form-control" type="text" name="Telefon Numarası" v-model="user.kullaniciTelefon"
+                    <input id="phone" class="form-control" type="text" name="Telefon Numarası" v-model="user.kullaniciTelefon"
                            v-validate="'required'"
                            :class="{'input':true, 'text-danger':errors.has('Telefon Numarası')}">
                     <span v-show="errors.has('Telefon Numarası')" class="help text-danger">{{ errors.first('Telefon Numarası') }}</span>
@@ -130,7 +130,7 @@
             </a>
           </div>
           <div class="register-form-footer clearfix">
-            <button type="submit" class="float-right" @click="register">KAYIT OL <i class="fa fa-sign-in-alt"></i></button>
+            <button type="submit" class="float-right" @click="register">KAYIT OL <i class="fa fa-sign-in"></i></button>
           </div>
         </div>
         <div class="col-12 col-md-3 col-lg-3 sign-with d-none d-md-block">
@@ -182,6 +182,7 @@
                 this.error.hasAny = true;
                 this.error.message = {success:[res.data.data]};
                 this.error.type = "alert alert-success";
+                this.$router.push('/login');
               }
             }).catch(err => {
               console.log(err.response);
@@ -192,7 +193,14 @@
           }
         })
       }
-    }
+    },
+
+    mounted(){
+	    $(function () {
+		   $("#phone").mask("(999) 999-9999");
+	    });
+
+  }
 
   }
 </script>

@@ -69,8 +69,8 @@
     <div class="container">
       <div class="row">
         <!-- single video news -->
-        <div class="col-12 col-sm-6 col-md-4 video-news" v-for="stream in streams">
-          <a href="#">
+        <div class="col-12 col-sm-6 col-md-4 video-news" v-for="(stream, index) in streams">
+          <a href="javascript:;" data-toggle="modal" :data-target="'#show_video_'+index">
             <div class="image">
               <img src="/static/out_source/video.png" class="img-fluid" alt="">
               <i class="fas fa-play"></i>
@@ -83,6 +83,23 @@
       <div class="row">
         <div class="col-12">
           <a class="btn-load-more" href="#">DAHA FAZLA YÜKLE</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div v-for="(stream, index) in streams" class="modal fade" :id="'show_video_'+index" tabindex="-1" role="dialog"  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLongTitle">{{stream.yayinBasligi}}</h4>
+          </div>
+          <div class="modal-body">
+            <div class="embed-responsive embed-responsive-16by9" v-html="stream.yayinEmbedKodu"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-aa-dark" data-dismiss="modal">Kapat</button>
+          </div>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
     <div v-if="!isLoading">
       <div class="text-content">
         <div class="wrapper"  v-if="post.durum">
-          <h4>{{post.durum}}</h4>
+          <h5>{{post.durum}}</h5>
         </div>
       </div>
       <div class="content-quotation">
@@ -11,7 +11,7 @@
           <div class="coupon">
             <div class="header" >
               <img :src="innerPost.IMG" alt="">
-              <router-link :to="`${innerPost.kullanciAdi}`">{{innerPost.adSoyad}}</router-link>
+              <router-link style="color: #FFF!important"  :to="`${innerPost.kullaniciAdi}`">{{innerPost.adSoyad}}</router-link>
               <em v-date-show="innerPost.post_created_at"></em>
             </div>
             <div class="body">

@@ -19,9 +19,9 @@
 						<div class="dropdown-menu dropdown-menu-right">
 
 							<!-- href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url("profil/" . $p["kullaniciAdi"] . "/" . $dt->format("dmYHis") . "-" . $p["ID"]) ?>&amp;src=sdkpreparse" -->
-							<a class="dropdown-item facebook" target="_blank" href="#">
+							<router-link class="dropdown-item facebook" target="_blank" :to="`https://www.facebook.com/sharer/sharer.php?u=${url}/${post.kullaniciAdi}/posts/${post.islem_id}`">
 								<i class="fab fa-facebook"></i> Facebook'ta Paylaş
-							</a>
+							</router-link>
 							<a class="dropdown-item twitter" target="_blank" href="#">
 								<i class="fab fa-twitter"></i> Twitter'da Paylaş
 							</a>
