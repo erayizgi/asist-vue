@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Vue from 'vue';
 
-let apiUrl = "http://asist.test/";
-// let apiUrl = "https://asistanaliz-192209.appspot.com/";
+// let apiUrl = "http://asist.test/";
+let apiUrl = "https://asistanaliz-192209.appspot.com/";
 
 export default {
   namespaced: true,

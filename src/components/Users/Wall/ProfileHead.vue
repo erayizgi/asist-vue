@@ -1,5 +1,5 @@
 <template>
-	<section id="profile-bar">
+	<section id="profile-bar" v-if="user">
 		<div class="container">
 			<div class="row">
 				<div class="col-12 col-sm-9">
@@ -40,13 +40,16 @@
 		],
 		data() {
 			return {
-				user: {}
+				user: null,
+        isLoading: true
 			}
 		},
 		created() {
+		  this.isLoading = true;
 			this.$store.dispatch("users/getUser", this.userName).then(res => {
 				this.user = res.data.data;
-			})
+        this.isLoading = false;
+      })
 		}
 	}
 </script>

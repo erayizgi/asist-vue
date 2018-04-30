@@ -75,9 +75,11 @@
 			}
 		},
     created(){
-		  this.$store.dispatch("common/getActiveDuty").then(()=>{
-		    this.$store.dispatch("common/getMissions",this.$store.state.common.activeDuty).then();
-      })
+		  if(this.$store.state.users.user){
+        this.$store.dispatch("common/getActiveDuty").then(()=>{
+          this.$store.dispatch("common/getMissions",this.$store.state.common.activeDuty).then();
+        })
+      }
     },
 		methods: {
 			showFeed() {
