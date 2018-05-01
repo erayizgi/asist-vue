@@ -28,40 +28,24 @@
                                     class="fa fa-times"></i></a>
                         </div>
                         <ul class="navbar-nav">
-                            <li class="nav-item dropwdown">
-                                <router-link to="/streaming"><i class="fas fa-rss-square"></i> YAYINLAR</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link dropdown-toggle" id="navbarPredictors" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                        class="fas fa-users"></i> TAHMİNCİLER</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarPredictors">
-                                    <li class="dropdown-item">
-                                        <a href="#"><span>CANLI TAHMİN</span></a>
-                                    </li>
-                                    <li class="dropdown-item">
-                                        <a href="#"><span>TAKIM ANALİZLERİ</span></a>
-                                    </li>
-                                    <li class="dropdown-item">
-                                        <a href="#"><span>A'dan Z'ye LİGLER</span></a>
-                                    </li>
-                                    <li class="dropdown-item">
-                                        <a href="#"><span>AVRUPA DIŞI FUTBOL</span></a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <router-link to="/forecast"><i class="fas fa-bullseye"></i> TAHMİN</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#"><i class="far fa-chart-bar"></i> İSTATİSTİKLER</a>
-                            </li>
-                            <li class="nav-item">
-                                <router-link to="/news"><i class="far fa-newspaper"></i> HABERLER</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link to="/duties"><i class="fas fa-book"></i> GÖREVLER</router-link>
-                            </li>
+                          <li class="nav-item">
+                            <router-link to="/streaming"><i class="fas fa-rss-square"></i> YAYINLAR</router-link>
+                          </li>
+                          <li class="nav-item">
+                            <router-link to="/tippers"><i class="fas fa-users"></i> TAHMİNCİLER</router-link>
+                          </li>
+                          <li class="nav-item">
+                            <router-link to="/forecast"><i class="fas fa-bullseye"></i> TAHMİN</router-link>
+                          </li>
+                          <li class="nav-item">
+                            <a href="#"><i class="fas fa-chart-bar"></i> İSTATİSTİKLER</a>
+                          </li>
+                          <li class="nav-item">
+                            <router-link to="/news"><i class="far fa-newspaper"></i> HABERLER</router-link>
+                          </li>
+                          <li class="nav-item">
+                            <router-link to="/duties"><i class="fas fa-list"></i> GÖREVLER</router-link>
+                          </li>
                         </ul>
                     </div>
                 </transition>
@@ -77,7 +61,7 @@
                             <router-link to="/streaming"><i class="fas fa-rss-square"></i> YAYINLAR</router-link>
                         </li>
                         <li class="navbar-menu-item">
-                            <a href="#"><i class="fas fa-users"></i> TAHMİNCİLER</a>
+                            <router-link to="/tippers"><i class="fas fa-users"></i> TAHMİNCİLER</router-link>
                         </li>
                         <li class="navbar-menu-item">
                             <router-link to="/forecast"><i class="fas fa-bullseye"></i> TAHMİN</router-link>
