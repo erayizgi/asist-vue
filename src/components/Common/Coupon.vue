@@ -1,5 +1,9 @@
 <template>
   <section id="second-page-content">
+    <button type="button" class="btn btn-my-coupon d-block d-md-none" data-slide="left" data-target="#user-coupon">
+      <i class="fas fa-bars"></i> KUPONUM
+    </button>
+
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-8 content nopadding">
@@ -33,8 +37,9 @@
           <spinner v-else/>
 
         </div>
-        <div class="col-md-4 nopadding">
+        <div class="col-md-4 col-12 col-sm-12 nopadding">
           <div class="coupon" id="user-coupon">
+            <a href="#user-coupon" class="btn-close float-right"><i class="fas fa-times"></i></a>
             <div style="background:#36243f;padding:15px;">
               <h4 class="text-white mt-2">
                 <img :src="user.IMG" alt="" class="avatar"
@@ -47,7 +52,7 @@
             </div>
             <div class="coupon-title">
               <div class="clearfix"></div>
-              KUPON YAP
+              KUPONUNUZ
             </div>
             <div class="coupon-items">
               <div class="wrapper" v-if="!hasCoupon">
@@ -138,6 +143,25 @@
         this.isLoading = false;
       });
 
+    },
+    mounted(){
+      $(document).on('click', 'button[data-slide=left]', function () {
+
+        var data = $(this).data();
+
+        $(data.target).stop();
+        $(data.target).animate({width: 'toggle'}, '500');
+
+      });
+      $(document).on('click', '.btn-close', function () {
+
+        var target = $(this).attr('href');
+        var slide = $(this).data('slide');
+
+        $(target).stop();
+        $(target).animate({width: 'toggle'}, '500');
+
+      });
     },
     computed: {
       games() {

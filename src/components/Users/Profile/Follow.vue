@@ -87,7 +87,11 @@
             },
           isAllowedToMessage(){
             if(this.$route.params.user_name){
-              return true;
+              if(this.$route.name === "Followers"){
+                return false;
+              }else{
+                return true;
+              }
             }
           }
         },

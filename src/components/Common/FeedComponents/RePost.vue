@@ -12,7 +12,7 @@
             <div class="header" >
               <img :src="innerPost.IMG" alt="">
               <router-link style="color: #FFF!important"  :to="`${innerPost.kullaniciAdi}`">{{innerPost.adSoyad}}</router-link>
-              <em v-date-show="innerPost.post_created_at"></em>
+              <em v-date-show="innerPost.created_at"></em>
             </div>
             <div class="body">
               <static-content v-if="innerPost.paylasim_tipi===1" :post-content="innerPost.paylasim_id" :re-post="true"/>

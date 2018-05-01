@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Vue from 'vue';
 
-// let apiUrl = "http://asist.test/";
-let apiUrl = "https://asistanaliz-192209.appspot.com/";
+let apiUrl = "http://asist.test/";
+// let apiUrl = "https://asistanaliz-192209.appspot.com/";
 
 export default {
   namespaced: true,
@@ -186,7 +186,9 @@ export default {
       });
     },
     getMissions(context,payload){
-      return axios.get(apiUrl + "duty/groups?where=grup_id|"+payload).then(res=>{
+      return axios.get(apiUrl + "duty/"+payload+"/missions",{
+        headers: {Authorization: "Bearer "+ localStorage.getItem("token")}
+      }).then(res=>{
         context.commit("setActiveMissions",res.data.data);
       })
     }
@@ -238,7 +240,7 @@ export default {
       Vue.set(state,"activeDuty",data);
     },
     setActiveMissions(state,data){
-      Vue.set(state,"activeMissions",data.data[0].duties);
+      Vue.set(state,"activeMissions",data);
     }
   }
 }

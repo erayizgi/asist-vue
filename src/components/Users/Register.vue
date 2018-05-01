@@ -123,24 +123,24 @@
           </div>
 
           <div class="mobile-buttons d-block d-md-none">
-            <a href="" class="btn btn-block btn-social btn-facebook">
-              <span class="fa fa-facebook-square"></span> Facebook ile giriş yap
-            </a>
-            <a href="" class="btn btn-block btn-social btn-google">
-              <span class="fa fa-google-plus-square"></span> Google ile giriş yap
-            </a>
+            <!--<a href="" class="btn btn-block btn-social btn-facebook">-->
+              <!--<span class="fa fa-facebook-square"></span> Facebook ile giriş yap-->
+            <!--</a>-->
+            <!--<a href="" class="btn btn-block btn-social btn-google">-->
+              <!--<span class="fa fa-google-plus-square"></span> Google ile giriş yap-->
+            <!--</a>-->
           </div>
           <div class="register-form-footer clearfix">
             <button type="submit" class="float-right" @click="register">KAYIT OL <i class="fa fa-sign-in"></i></button>
           </div>
         </div>
         <div class="col-12 col-md-3 col-lg-3 sign-with d-none d-md-block">
-          <a href="" class="btn btn-block btn-social btn-facebook">
-            <span class="fa fa-facebook-square"></span> Facebook ile giriş yap
-          </a>
-          <a href="" class="btn btn-block btn-social btn-google">
-            <span class="fa fa-google-plus-square"></span> Google ile giriş yap
-          </a>
+          <!--<a href="" class="btn btn-block btn-social btn-facebook">-->
+            <!--<span class="fa fa-facebook-square"></span> Facebook ile giriş yap-->
+          <!--</a>-->
+          <!--<a href="" class="btn btn-block btn-social btn-google">-->
+            <!--<span class="fa fa-google-plus-square"></span> Google ile giriş yap-->
+          <!--</a>-->
         </div>
         <div class="col-12 subsection d-none d-md-block">
           <h3 class="title">Lorem ipsum dolor sit amet,</h3>

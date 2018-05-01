@@ -32,17 +32,17 @@
             <div class="task-list" v-if="amI">
               <h3 class="title">YAPILACAKLAR LİSTESİ</h3>
               <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                <div class="progress-bar bg-success" role="progressbar" :style="`width: ${calculateDutyProgress()}%;`" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{calculateDutyProgress().toFixed(2)}}%</div>
               </div>
               <ul>
                 <li class="clearfix" v-for="mission in missions">
-                  <a href="#" class="task">{{mission.gorev_adi}}</a>
-                  <span class="status done"><i class="fas fa-check"></i></span>
+                  <a href="#" class="task">{{mission.duty.gorev_adi}}</a>
+                  <span class="status done" v-if="mission.tamamlandi===1"><i class="fas fa-check"></i></span>
+                  <span class="status" v-if="mission.tamamlandi===0"></span>
                 </li>
               </ul>
             </div>
 						<follow-suggestions/>
-
 					</div>
 				</div>
 			</div>
@@ -94,15 +94,27 @@
 				this.coupon = false;
 				this.feed = true;
 			},
-
 			showCoupon() {
 				this.feed = false;
 				this.coupon = true;
 			},
-
 			showActive() {
 
-			}
+			},
+      calculateDutyProgress(){
+			  if(this.$store.state.common.activeMissions.length > 0){
+          let progress = 0;
+          this.$store.state.common.activeMissions.forEach(item=>{
+            if(item.tamamlandi === 1){
+              progress++;
+            }
+          });
+          return (progress/this.$store.state.common.activeMissions.length)*100;
+        }else{
+			    return 0;
+        }
+
+      }
 		},
 
 		computed:{
@@ -113,7 +125,11 @@
 			  return this.$store.state.common.activeMissions;
       },
       amI(){
-        return false;
+			  if(this.$store.state.users.user){
+          return (this.$store.state.users.user.kullaniciAdi === this.$route.params.user_name)
+        }else{
+			    return false
+        }
       },
 		},
 	}

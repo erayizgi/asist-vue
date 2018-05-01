@@ -84,7 +84,7 @@
         slickOptions: {
           arrows: true,
           rows: 1,
-          slidesToShow: 5, // if mobile 1
+          slidesToShow: 1, // if mobile 1
           slidesToScroll: 1,
           infinite: true,
           prevArrow: '<button class="btn-prev" type="button"><i class="fas fa-chevron-left"></i></button>',
