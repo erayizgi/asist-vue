@@ -8,6 +8,7 @@ import AppHome from '../components/Common/AppHome';
 import Avatar from '../components/Users/Avatar';
 import Wall from '../components/Users/Wall';
 import Followers from '../components/Users/Profile/Followers';
+import Following from '../components/Users/Profile/Following';
 import News from '../components/News/News';
 import Streaming from '../components/Streaming';
 import Inbox from '../components/Users/Inbox';
@@ -147,7 +148,12 @@ export default new Router({
 			name: 'Followers',
 			component: Followers
 		},
-    { path: '*', component: Wall }
+		{
+			path: '/:user_name/following',
+			name: 'Following',
+			component: Following
+		},
+		{path: '*', component: Wall}
 
 	]
 })

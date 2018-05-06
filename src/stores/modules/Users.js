@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Vue from 'vue';
 
-// let apiUrl = "http://asist.test/";
-let apiUrl = "https://asistanaliz-192209.appspot.com/";
+let apiUrl = "http://asist.test/";
+//let apiUrl = "https://asistanaliz-192209.appspot.com/";
 
 export default {
 	namespaced: true,
@@ -45,10 +45,11 @@ export default {
 		forgot(context, payload) {
 			return axios.post(apiUrl + "users/forgot/", {email: payload.mail});
 		},
-		reset(context, payload){
+		reset(context, payload) {
 			return axios.patch(apiUrl + "users/reset", {password: payload.password},
-				{headers: {Authorization: "Bearer " + localStorage.getItem("token")}
-			});
+				{
+					headers: {Authorization: "Bearer " + localStorage.getItem("token")}
+				});
 		},
 		me(context, payload) {
 			return axios.get(apiUrl + "users/me", {
@@ -93,9 +94,9 @@ export default {
 					context.commit("setFeed", response.data.data);
 				})
 		},
-    clearFeed(context,payload){
-		  context.commit("clearFeed",payload);
-    },
+		clearFeed(context, payload) {
+			context.commit("clearFeed", payload);
+		},
 		getUser(context, payload) {
 			return axios.get(apiUrl + "users/" + payload);
 		},
@@ -106,6 +107,9 @@ export default {
 		},
 		getFollowers(context, payload) {
 			return axios.get(apiUrl + "users/" + payload.username + "/followers?order_by=+takipEdenID&offset=" + payload.page * 20)
+		},
+		getFollowingUser(context, payload) {
+			return axios.get(apiUrl + "users/" + payload.username + "/following?order_by=+takipEdenID&offset=" + payload.page * 20)
 		},
 		follow(context, payload) {
 			return axios.post(apiUrl + "follow", payload, {
@@ -207,9 +211,9 @@ export default {
 			});
 			//state.feed =feed;
 		},
-    clearFeed(state,data){
-		  Vue.set(state,"feed",[]);
-    },
+		clearFeed(state, data) {
+			Vue.set(state, "feed", []);
+		},
 		setFollowing(state, data) {
 			Vue.set(state, "following", data);
 		},

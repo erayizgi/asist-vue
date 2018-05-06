@@ -22,7 +22,7 @@
       <div class="top-games-tab-items clearfix tab-pane show" id="football-tab-mobile" v-if="football">
         <slick ref="slick" :options="slickOptions">
           <div class="item float-left" v-for="f in football">
-            <div class="score">
+            <div class="score" style="min-height: 92px!important">
               <div class="team">
                 <img :src="f.home_logo" alt="" class="team-image" style="width: 60px!important; height: 70px!important;">
                 <div class="team-code">{{f.home_name}}</div>

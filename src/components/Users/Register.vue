@@ -83,28 +83,7 @@
 
               </div>
             </div>
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <div class="form-group">
-                    <label>Ülke</label>
-                    <input type="text" class="form-control" name="Ulke" v-model="user.kullaniciBulunduguUlke"
-                           v-validate="'required'">
-                    <span v-show="errors.has('Ulke')" class="help text-danger">{{ errors.first('Ulke') }}</span>
 
-                  </div>
-                </div>
-                <div class="col-12 col-md-6">
-                  <div class="form-group">
-                    <label>Şehir</label>
-                    <input type="text" class="form-control" name="Şehir" v-model="user.kullaniciBulunduguSehir"
-                           v-validate="'required'">
-                    <span v-show="errors.has('Şehir')" class="help text-danger">{{ errors.first('Şehir') }}</span>
-                  </div>
-                </div>
-
-              </div>
-            </div>
             <div class="container-fluid">
               <div class="row">
                 <div class="col-12">
@@ -169,8 +148,6 @@
           email: '',
           kullaniciTelefon: '',
           kullaniciHakkinda: '',
-          kullaniciBulunduguUlke: '',
-          kullaniciBulunduguSehir: ''
         }
       }
     },

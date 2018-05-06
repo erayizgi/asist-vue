@@ -21,7 +21,9 @@
             </span>
             <span class="float-left">
                         TAKİP
-                        <strong>{{stats.following}}</strong>
+                <router-link :to="`/${user.kullaniciAdi}/following`">
+	            <strong>{{stats.following}}</strong>
+	                </router-link>
                     </span>
             <span class="float-left">
                         BAŞARI

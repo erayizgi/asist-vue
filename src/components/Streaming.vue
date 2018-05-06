@@ -129,10 +129,12 @@
           container.scrollTop = container.scrollHeight;
         }
       }, 2000);
+      /*
       this.scrollFixer = setInterval(() => {
         let container = this.$el.querySelector("#stream_message_area");
         container.scrollTop = container.scrollHeight;
       }, 500);
+      */
     },
     computed: {
       streams() {
@@ -174,7 +176,7 @@
     },
     beforeDestroy(){
       clearInterval(this.chatChecker);
-      clearInterval(this.scrollFixer);
+      //clearInterval(this.scrollFixer);
     }
   }
 </script>
