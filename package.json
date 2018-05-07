@@ -14,6 +14,7 @@
     "axios": "^0.18.0",
     "jquery": "^3.2.1",
     "moment": "^2.22.0",
+    "readmore-js": "^2.1.0",
     "vee-validate": "^2.0.6",
     "vue": "^2.5.2",
     "vue-flickity": "^1.1.1",

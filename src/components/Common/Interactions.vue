@@ -297,9 +297,9 @@
 							// 	limit: 1
 							// }).then(res => {
 							// });
-              this.reLoadAllComments();
+							this.reLoadAllComments();
 
-            });
+						});
 				} else {
 					this.$swal({
 						title: "Uyarı!",
@@ -334,7 +334,7 @@
 
 				});
 			},
-      reLoadAllComments() {
+			reLoadAllComments() {
 				this.commentLoading = true;
 				console.log("loadAllComment");
 				this.$store.dispatch("comments/getCommentsByPostId", {
@@ -342,14 +342,14 @@
 					limit: 10,
 					offset: (this.page) * 10
 				}).then(res => {
-          this.comments = res.data.data.data;
+					this.comments = res.data.data.data;
 					if (res.data.data.metadata.count <= (this.page * 10)) {
 						this.showMore = false;
 					}
 					this.commentLoading = false;
 					this.page++;
-          this.reply_comment ="";
-          this.reply = null;
+					this.reply_comment = "";
+					this.reply = null;
 
 				});
 			},

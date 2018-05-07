@@ -3,7 +3,7 @@
     <div v-if="!isLoading">
       <div class="text-content">
         <div class="wrapper"  v-if="post.durum">
-          <h5>{{post.durum}}</h5>
+          <h5 class="pcontent">{{post.durum}}</h5>
         </div>
       </div>
       <div class="content-quotation">
@@ -50,6 +50,15 @@
         post: {},
         innerPost:{}
       }
+    },
+    mounted() {
+        $(document).ready(function() {
+            $(".pcontent").shorten({
+                "showChars" : 300,
+                "moreText"	: '<strong style="color: #fc115d">Devamını Gör</strong>',
+                "lessText"	: '<strong style="color: #fc115d">Daha Az Göster</strong>',
+            });
+        });
     },
     props: [
       "postId"

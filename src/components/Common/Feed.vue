@@ -69,6 +69,7 @@
 				url: "http://asistanaliz.com/",
 			}
 		},
+
 		created() {
 			this.isLoading = true;
 			if (this.$store.state.users.feed.length === 0) {

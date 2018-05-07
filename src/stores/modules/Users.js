@@ -94,6 +94,9 @@ export default {
 					context.commit("setFeed", response.data.data);
 				})
 		},
+		searchUser(context, payload){
+			return axios.get(apiUrl + "users/search/" + payload.username);
+		},
 		clearFeed(context, payload) {
 			context.commit("clearFeed", payload);
 		},

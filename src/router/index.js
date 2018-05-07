@@ -25,6 +25,7 @@ import NotificationsHome from '../components/Common/NotificationsHome';
 import AllTippers from '../components/Common/AllTippers';
 import Duties from '../components/Common/Duties';
 import SingleDuty from '../components/Common/SingleDuty';
+import Search from '../components/Users/Search';
 import NotFoundComponent from '../components/Common/NotFoundComponent';
 
 
@@ -132,6 +133,11 @@ export default new Router({
 			path: '/coupon',
 			name: 'Coupon',
 			component: Coupon
+		},
+		{
+			path: '/search/:username',
+			name: 'Search',
+			component: Search
 		},
 		{
 			path: '/:user_name',
