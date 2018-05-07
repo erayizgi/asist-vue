@@ -101,7 +101,12 @@
                 if (this.$store.state.users.isLogged) {
                     this.$store.dispatch("users/follow", {kullanici_id: this.following}).then(res => {
 	                    this.$store.dispatch("users/getFollowing", this.$store.state.users.user.kullaniciAdi).then(res => {
-		                    this.isLoading = false;
+	                      this.$store.dispatch("users/clearFeed").then(()=>{
+                          this.$store.dispatch("users/feed", this.page).then(res => {
+                            this.isLoading = false;
+
+                          })
+                        })
 	                    })
                     }).catch((err) => {
 	                    this.$swal({title: 'Hata', text: err.response.data.message, type: 'warning'});
@@ -121,7 +126,11 @@
                 if (this.$store.state.users.isLogged) {
                     this.$store.dispatch("users/unfollow", {kullanici_id: this.following}).then(res => {
                         this.$store.dispatch("users/getFollowing", this.$store.state.users.user.kullaniciAdi).then(res => {
-                            this.isLoading = false;
+                          this.$store.dispatch("users/clearFeed").then(()=>{
+                            this.$store.dispatch("users/feed", this.page).then(res => {
+                              this.isLoading = false;
+                            })
+                          })
                         })
                     })
                 } else {

@@ -21,9 +21,8 @@
         if (this.$store.state.users.token != null) {
           this.$store.dispatch("users/me", this.$store.state.users.token).then(res => {
             this.$store.dispatch("users/getMyStatistics").then(()=>{
-              this.$store.state.users.isLogged = true;
               this.$store.dispatch("users/getFollowing", this.$store.state.users.user.kullaniciAdi).then(res => {
-                console.log("app den params",this.$route.params);
+                this.$store.state.users.isLogged = true;
                 this.$router.push(this.$route);
               });
             })
@@ -34,8 +33,8 @@
             this.$store.state.users.token = localStorage.getItem("token");
             this.$store.dispatch("users/me", localStorage.getItem("token")).then(res => {
               this.$store.dispatch("users/getMyStatistics").then(()=>{
-                this.$store.state.users.isLogged = true;
                 this.$store.dispatch("users/getFollowing", this.$store.state.users.user.kullaniciAdi).then(res => {
+                  this.$store.state.users.isLogged = true;
                   // this.$router.push(this.$route.fullPath);
 
                 });

@@ -147,8 +147,10 @@
 					if (result) {
 						this.$store.dispatch("users/login", data).then(res => {
 							this.$store.dispatch("users/me", this.$store.state.users.token).then(res => {
-								this.isLoading = false;
-								this.$router.push("/");
+                this.$store.dispatch("users/getFollowing", this.$store.state.users.user.kullaniciAdi).then(res => {
+                  this.isLoading = false;
+                  this.$router.push("/");
+                });
 							})
 						}).catch(err => {
 							this.isLoading = false;

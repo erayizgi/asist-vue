@@ -218,7 +218,7 @@ export default {
 			Vue.set(state, "feed", []);
 		},
 		setFollowing(state, data) {
-			Vue.set(state, "following", data);
+			Vue.set(state, "following", data.data);
 		},
 		setNotification(state, data) {
 			Vue.set(state, "notifications", data);
