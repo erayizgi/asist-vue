@@ -24,18 +24,7 @@
                   </div>
                   <div class="countdown">
                     <em>vs.</em>
-                    <div class="counter" data-event-date="04/03/2018 19:30"> <!-- MM/DD/YYYY HH:MM:SS -->
-                      <span class="d">{{days(slide.time)}}</span>
-                      <span class="separator">:</span>
-                      <span class="h">{{hours(slide.time)}}</span>
-                      <span class="separator">:</span>
-                      <span class="m">{{minutes(slide.time)}}</span>
-                    </div>
-                    <div class="tag">
-                      <span>GÜN</span>
-                      <span>SAAT</span>
-                      <span>DAKİKA</span>
-                    </div>
+
                   </div>
                   <div class="team">
                     <img :src="slide.away_logo" class="img-fluid" style="width:150px;" alt="">

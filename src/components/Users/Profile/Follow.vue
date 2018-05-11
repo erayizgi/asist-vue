@@ -90,7 +90,8 @@
               if(this.$route.name === "Followers"){
                 return false;
               }else{
-                return true;
+                console.log("parent",this.$parent.$el.className);
+                return (this.$parent.$el.className !== "follow");
               }
             }
           }

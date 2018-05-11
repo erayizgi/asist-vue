@@ -27,7 +27,7 @@
                 <img :src="f.home_logo" alt="" class="team-image" style="width: 60px!important; height: 70px!important;">
                 <div class="team-code">{{f.home_name}}</div>
               </div>
-              <div class="date"><i>vs.</i><span v-date-show="f.created_at"></span></div>
+              <div class="date"><i>vs.</i><span v-date-show="f.time"></span></div>
               <div class="team">
                 <img :src="f.away_logo" alt="" class="team-image" style="width: 60px!important; height: 70px!important;">
                 <div class="team-code">{{f.away_name}}</div>

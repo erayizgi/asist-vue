@@ -11,10 +11,10 @@ import VeeValidate from 'vee-validate';
 import VModal from 'vue-js-modal'
 
 
-//const VueInputMask = require('vue-inputmask').default;
+const VueInputMask = require('vue-inputmask').default;
 
 Vue.use(VModal);
-//Vue.use(VueInputMask);
+Vue.use(VueInputMask);
 
 const config = {
   locale: 'tr',

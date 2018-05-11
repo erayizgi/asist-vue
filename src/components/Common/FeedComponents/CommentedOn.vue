@@ -12,7 +12,9 @@
             <div class="header" v-if="post">
               <img :src="post.IMG" alt="">
               <router-link :to="`${post.kullaniciAdi}`" class="text-white">{{post.adSoyad}}</router-link>
-              <router-link :to="`/${post.kullaniciAdi}/${post.paylasim_id}`" class="text-white"><em v-date-show="post.created_at"></em></router-link>
+              <router-link :to="`/${post.kullaniciAdi}/posts/${post.paylasim_id}`" class="text-white">
+                <em v-date-show="post.created_at"></em>
+              </router-link>
             </div>
             <div class="body">
               <static-content v-if="post.paylasim_tipi===1" :post-content="post.durum" :image-content="post.resim" :re-post="true"/>

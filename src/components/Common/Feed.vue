@@ -6,9 +6,7 @@
 				<img :src="post.IMG" class="img-fluid" width="75" height="75" alt="">
 				<router-link :to="`/${post.kullaniciAdi}`"><strong>{{post.adSoyad}}</strong></router-link>
 
-				<router-link :to="`/${post.kullaniciAdi}/posts/${post.islem_id}`">
 					<em v-date-show="post.islem_tarihi"></em> <em>{{humanReadableActivity(post.islem_turu)}}</em>
-				</router-link>
 
 				<div class="float-right">
 					<div class="dropdown">
