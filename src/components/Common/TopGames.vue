@@ -24,12 +24,12 @@
           <div class="item float-left" v-for="f in football">
             <div class="score" style="min-height: 92px!important">
               <div class="team">
-                <img :src="f.home_logo" alt="" class="team-image" style="width: 60px!important; height: 70px!important;">
+                <img :src="f.home_logo" alt="" class="team-image" style="width: 60px!important; height: 60px!important;">
                 <div class="team-code">{{f.home_name}}</div>
               </div>
               <div class="date"><i>vs.</i><span v-date-show="f.time"></span></div>
               <div class="team">
-                <img :src="f.away_logo" alt="" class="team-image" style="width: 60px!important; height: 70px!important;">
+                <img :src="f.away_logo" alt="" class="team-image" style="width: 60px!important; height: 60px!important;">
                 <div class="team-code">{{f.away_name}}</div>
               </div>
             </div>

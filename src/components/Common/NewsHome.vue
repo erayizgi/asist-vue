@@ -41,7 +41,7 @@
               <div class="single-slide" v-for="n in news">
                 <div class="content" style="width:263px!important;">
                   <router-link :to="`/news/${n.URL}`">
-                    <img style="width: 263px!important; height:141px!important; ":src="'http://facetahmin.e-panelim.com/assets/images/'+n.haberGorsel" class="img-fluid" alt="">
+                    <img style="width: 263px!important; height:141px!important; ":src="n.haberGorsel" class="img-fluid" alt="">
                     <strong>{{n.haberBaslik}}</strong>
                     <p v-html="n.haberOzet"></p>
                   </router-link>

@@ -7,8 +7,8 @@
 				</div>
 				<div class="links col-12 col-md-8 nopadding" v-if="!isLogged">
 					<div class="menu">
-						<a href="#" class="d-none d-md-inline"><img src="static/images/google-play.png"></a>
-						<a href="#" class="d-none d-md-inline"><img src="static/images/apple-store.png"></a>
+						<a href="#" class="d-none d-md-inline"><img src="/static/images/google-play.png"></a>
+						<a href="#" class="d-none d-md-inline"><img src="/static/images/apple-store.png"></a>
 						<a href="#" class="space"></a>
 						<router-link to="/register">ÜYE OL <i class="fa fa-user-plus"></i></router-link>
 						<router-link to="/login">GİRİŞ YAP <i class="fas fa-sign-in-alt"></i></router-link>

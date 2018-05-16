@@ -15,7 +15,7 @@
 			<div class="col-12 col-md-6"  v-for="data in datas"  style="cursor: pointer" @click="profile(data.kullaniciAdi)">
 				<div class="user-card clearfix" style="min-height: 100px!important">
 					<div class="avatar float-left">
-						<img :src="data.IMG" style="width:60px;height:60px;">
+						<img :src="+data.IMG" style="width:60px;height:60px;">
 
 					</div>
 					<div class="info float-right">

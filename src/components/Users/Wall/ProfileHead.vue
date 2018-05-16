@@ -25,7 +25,7 @@
 						</div>
 					</div>
 				</div>
-				<follow v-if="this.$store.state.users.isLogged" :follower="this.$store.state.users.user.kullaniciAdi" :following="user.data.kullaniciAdi"/>
+				<follow v-if="this.$store.state.users.isLogged && this.$store.state.users.user.kullaniciAdi != this.userName" :follower="this.$store.state.users.user.kullaniciAdi" :following="user.data.kullaniciAdi"/>
 			</div>
 		</div>
 	</section>
@@ -52,6 +52,11 @@
 				this.user = res.data.data;
 				this.isLoading = false;
 			})
+
+			console.log(this.$store.state.users.user.kullaniciAdi);
+			console.log(this.userName);
+		},
+		methods:{
 		}
 	}
 </script>

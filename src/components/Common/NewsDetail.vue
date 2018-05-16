@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="news">
-                        <img :src="'http://facetahmin.e-panelim.com/assets/images/'+details.haberGorsel" alt="" style="width: 100%" class="img-fluid news-image">
+                        <img :src="details.haberGorsel" alt="" style="width: 100%" class="img-fluid news-image">
                         <h1 class="title">{{details.haberBaslik}}</h1>
                         <span class="excerpt">{{details.haberOzet}}</span>
                         <p v-html="details.haberAciklama"></p>
@@ -41,7 +41,7 @@
                     <ul class="news-list">
                         <!--single news-->
                         <li  v-for="side in sideNews">
-                            <a :href="`#/news/${side.URL}`"  class="clearfix" v-if="!isLoading">
+                            <a :href="`/news/${side.URL}`"  class="clearfix" v-if="!isLoading">
                                 <img :src="side.IMG" alt="" style="width: 50px; border: 2px solid #ddd" class="rounded-circle">
                                 {{side.haberBaslik}}
                             </a>
@@ -63,7 +63,7 @@
                 <!-- single item -->
                 <div class="col-3 col-sm-6 col-lg-3 item" v-for="b in bottom">
                     <router-link :to="`/news/${b.URL}`">
-                        <img :src="'http://facetahmin.e-panelim.com/assets/images/'+b.haberGorsel" class="img-fluid" alt="">
+                        <img :src="+b.haberGorsel" class="img-fluid" alt="">
                         <strong>{{b.haberBaslik}}</strong>
 
                     </router-link>
@@ -102,7 +102,7 @@
             this.$store.dispatch("common/getSideNews", {limit: 5}).then();
 
             // Bottom News
-            this.$store.dispatch("common/getNewsPage", {limit: 4, page: 3}).then((res) => {
+            this.$store.dispatch("common/getNewsPage", {limit: 5, page: 1}).then((res) => {
                 this.bottom = res.data.data.data;
             });
         },
