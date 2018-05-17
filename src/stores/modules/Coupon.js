@@ -53,6 +53,13 @@ export default{
       });
       let coupon = state.coupon;
       coupon.splice(index,1);
+      Vue.set(state,"mbs",1);
+
+      coupon.forEach(item =>{
+        if(state.mbs < item.event.mbc){
+          Vue.set(state,"mbs",item.event.mbc);
+        }
+      });
       Vue.set(state,"coupon",coupon);
     },
     updateMBS(state){
