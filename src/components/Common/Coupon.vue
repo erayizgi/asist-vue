@@ -259,7 +259,8 @@
             let balance = 0;
             this.isLoading = true;
             this.$store.dispatch("users/checkBalance").then(res => {
-              balance = res.data.data.balance;
+
+              balance = parseFloat(res.data.data.balance);
               if (balance >= this.misli) {
                 this.$swal({
                   title: "Kuponu Paylaş",

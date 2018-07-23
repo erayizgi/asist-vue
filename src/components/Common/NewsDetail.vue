@@ -63,7 +63,7 @@
                 <!-- single item -->
                 <div class="col-3 col-sm-6 col-lg-3 item" v-for="b in bottom">
                     <router-link :to="`/news/${b.URL}`">
-                        <img :src="+b.haberGorsel" class="img-fluid" alt="">
+                        <img :src="b.haberGorsel" class="img-fluid" alt="">
                         <strong>{{b.haberBaslik}}</strong>
 
                     </router-link>
